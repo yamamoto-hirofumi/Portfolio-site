@@ -1,24 +1,38 @@
-# README
+# <みんなで楽しく写真を共有しよう！Let`s Share pictures！>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+<写真を投稿し共有することで思い出、話題作りが出来るようなサイトになっています。
+また、趣味の共有や同じ趣味の人と繋がることで生活が楽しくなるようなサイトです。>
 
-Things you may want to cover:
+### サイトテーマ
+<写真を撮り気に入った写真を投稿しみんなにshareすることでこんな場所に行ってみたいやかわいい写真で癒されると思い
+生活が楽しくなるようになる。>
 
-* Ruby version
+### テーマを選んだ理由
+<写真を見てここどこだろうと調べここに行ってみたいと思うことがよくあり、知らなかったことを知ることが出来て生活が
+楽しくなったことがあった為、このテーマにしました。>
 
-* System dependencies
+### ターゲットユーザ
+<趣味の共有したい方、友達と思い出を共有したい方等、色々の方と繋がりたい方>
 
-* Configuration
+### 主な利用シーン
+<写真を共有することで他の人にもこんなところがあったよ、綺麗だったよ等を共有することで写真を見た人が行きたいと思い
+実際に旅行に行く。
+近くに同じ趣味の人がいない時に同じ趣味の方と繋がり会話することで趣味にさらに打ち込める。>
 
-* Database creation
+## 設計書
+<...>
 
-* Database initialization
+## チャレンジ要素一覧
+https://docs.google.com/spreadsheets/d/1vOyySVLaGgexNkjt5JIq4VbOgPdfO6lFW7JSWs3Rr3U/edit?usp=sharing
 
-* How to run the test suite
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- 使用しない場合は、使用素材の項目をREADMEから削除してください。

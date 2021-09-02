@@ -1,5 +1,4 @@
-# コロナウイルスに負けるな！！みんなでおうち時間の過ごし方を共有し生活を楽しくしましょう！！
- Let's share pictures!
+# コロナウイルスに負けるな！！みんなでおうち時間の過ごし方を共有し生活を楽しくしましょう！！Let's share pictures!
 
 ## サイト概要
 コロナウイルスが流行したことで外出自粛で仕事がテレワークになり休日もどこにもいけずおうち時間が増えた方が多いと思います。
@@ -25,7 +24,8 @@
 
 ## 設計書
 [ER図(作成中)](https://drive.google.com/file/d/14XOojT9Vm_qKSqEsU6SA1TBH345U6-Ba/view?usp=sharing)
- [テーブル定義書(作成中)](https://docs.google.com/spreadsheets/d/1EDqDY0Z2_aHTnyWxCoU79X_WC_8IezZKjU05AVYhtEM/edit?usp=sharing)
+
+[テーブル定義書(作成中)](https://docs.google.com/spreadsheets/d/1EDqDY0Z2_aHTnyWxCoU79X_WC_8IezZKjU05AVYhtEM/edit?usp=sharing)
 
 ## チャレンジ要素一覧
 [チャレンジ要素一覧](https://docs.google.com/spreadsheets/d/1vOyySVLaGgexNkjt5JIq4VbOgPdfO6lFW7JSWs3Rr3U/edit?usp=sharing)

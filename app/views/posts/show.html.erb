@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <%= attachment_image_tag @post, :image %>
+  </div>
+  <div>
+    <p><%= image_tag('no_image.jpg') %></p>
+    <p>title:<%= @post.title %></p>
+    <p>content:<%= @post.content %></p>
+  </div>
+  <% if @post.user == current_user %>
+    <%= link_to "削除", post_path(@post), method: :delete %>
+  <% end %>
+</div>

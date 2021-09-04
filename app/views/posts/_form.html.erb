@@ -1,0 +1,22 @@
+<%= form_with model: @post, url: url, local: true do |f| %>
+    <table class="row">
+      <tbody class="col-8 offset-4">
+        <tr>
+          <td><%= f.label :image, "投稿画像" %></td>
+          <td><%= f.attachment_field :image %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :title, "タイトル" %></td>
+          <td><%= f.text_field :title %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :content, "投稿内容" %></td>
+          <td><%= f.text_field :content %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><%= f.submit submit, class: "btn btn-success mt-4" %></td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>

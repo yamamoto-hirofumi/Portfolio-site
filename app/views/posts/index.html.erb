@@ -4,10 +4,10 @@
     <div class="row">
       <%= attachment_image_tag post, :image,size: "250x250", class: "col-4" %>
       <div class="col-8">
-        <p class="col-2">
-          <%= image_tag('no_image.jpg') %>
-          <%= post.user.name %>
-        </p>
+        <div class="row">
+          <p><%= image_tag('no_image.jpg') %></p>
+          <p class="d-flex align-items-center ml-3"><%= post.user.name %></p>
+        </div>
         <p class="col-2">
           title:
           <%= link_to post_path(post) do %>

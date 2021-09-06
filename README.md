@@ -28,6 +28,8 @@
 
 [テーブル定義書(作成中)](https://docs.google.com/spreadsheets/d/1EDqDY0Z2_aHTnyWxCoU79X_WC_8IezZKjU05AVYhtEM/edit?usp=sharing)
 
+[アプリケーション詳細設計(作成中)](https://docs.google.com/spreadsheets/d/1imQeG-q5rbzfUgBW77Rw2qEd_NX1S75SR4RXCeeM2Yw/edit?usp=sharing)
+
 ## チャレンジ要素一覧
 [チャレンジ要素一覧](https://docs.google.com/spreadsheets/d/1vOyySVLaGgexNkjt5JIq4VbOgPdfO6lFW7JSWs3Rr3U/edit?usp=sharing)
 

@@ -5,18 +5,18 @@
       <%= attachment_image_tag post, :image,size: "200x200", class: "col-4 offset-2" %>
       <div class="col-6">
         <div class="row">
-          <p><%= image_tag('no_image.jpg') %></p>
-          <p class="d-flex align-items-center ml-3"><%= post.user.name %></p>
+          <p><%= attachment_image_tag post.user, :profile_image, size: "100x100", format: 'jpeg', fallback: "no_image.jpg"%></p>
+          <p class="d-flex align-items-center ml-3">
+            <%= link_to post.user.name, user_path(post.user) %>
+            </p>
         </div>
         <p class="col-6">
           Title:
-          <%= link_to post_path(post) do %>
-            <%= post.title %>
-          <% end %>
+          <%= link_to post.title, post_path(post) %>
         </p>
         <div class="row">
         <p class="col-4">コメント数</p>
-        <p class="col-2">イイね数</p>
+        <p class="col-2">イイねボタン</p>
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 <div class="col-8 offset-4">
   <%= form_with model: @post, url: url, local: true do |f| %>
+  <%= render "layouts/errors", obj: post %>
     <table class="table table-borderless">
       <tbody>
         <tr>
@@ -8,11 +9,11 @@
         </tr>
         <tr>
           <td><%= f.label :title, "Title" %></td>
-          <td><%= f.text_field :title %></td>
+          <td><%= f.text_field :title, :size=>"30" %></td>
         </tr>
         <tr>
           <td><%= f.label :content, "Content" %></td>
-          <td><%= f.text_field :content %></td>
+          <td><%= f.text_area :content, :size=>"30x5" %></td>
         </tr>
         <tr>
           <td></td>

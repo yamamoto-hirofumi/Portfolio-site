@@ -1,13 +1,20 @@
 <div class="container">
+  <h2 class="text-center p-3">投稿詳細</h2>
   <div class="row">
-    <%= attachment_image_tag @post, :image %>
+      <%= attachment_image_tag @post, :image,size: "300x300", class: "offset-2 col-4" %>
+    <div class="col-6">
+      <p><%= @post.user.name %></p>
+      <p>title:<%= @post.title %></p>
+      <p>content:<%= @post.content %></p>
+      <p>コメント数</p>
+      <p>イイねボタン</p>
+      <p>投稿日:  <%= @post.created_at.strftime('%Y/%m/%d') %></p>
+      <% if @post.user == current_user %>
+        <%= link_to "編集", edit_post_path(@post), class: "btn btn-primary btn-sm" %>
+        <%= link_to "削除", post_path(@post), method: :delete,"data-confirm" => "本当に削除しますか？", class: "btn btn-danger btn-sm" %>
+      <% end %>
+    </div>
   </div>
-  <div>
-    <p><%= image_tag('no_image.jpg') %></p>
-    <p>title:<%= @post.title %></p>
-    <p>content:<%= @post.content %></p>
-  </div>
-  <% if @post.user == current_user %>
-    <%= link_to "削除", post_path(@post), method: :delete %>
-  <% end %>
+  コメント機能
 </div>
+

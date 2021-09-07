@@ -8,7 +8,7 @@
           <p><%= attachment_image_tag post.user, :profile_image, size: "100x100", format: 'jpeg', fallback: "no_image.jpg"%></p>
           <p class="d-flex align-items-center ml-3">
             <%= link_to post.user.name, user_path(post.user) %>
-            </p>
+          </p>
         </div>
         <p class="col-6">
           Title:

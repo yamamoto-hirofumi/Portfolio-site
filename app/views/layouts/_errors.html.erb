@@ -3,7 +3,7 @@
     <%= obj.errors.count %>件のエラーが発生しました
     <ul>
       <% obj.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <li class="list-unstyled"><%= message %></li>
       <% end %>
     </ul>
   <% end %>

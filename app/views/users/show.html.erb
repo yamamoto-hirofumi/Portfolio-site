@@ -5,7 +5,7 @@
     <h2 class="text-center p-3"><%= @user.name %>さんのページ</h2>
   <% end %>
   <div class="row">
-    <div class="col-3 offset-1">
+    <div class="col-3 offset-1 mt-3">
       <p><%= attachment_image_tag @user, :profile_image, size: "150x150", format: 'jpeg', fallback: "no_image.jpg"%></p>
       <p>
         <%= @user.name %>
@@ -14,20 +14,25 @@
         <% end %>
       </p>
       <p><%= @user.introduction %></p>
-      <p>フォローボタン/DM</p>
-      <table>
+      <% if current_user.id != @user.id %>
+        <p>
+          <%= render "relationships/follow_button", user: @user %>
+          /DM
+        </p>
+      <% end %> 
+      <table class="row">
       <tr>
         <th>フォロー</th>
         <th>フォロワー</th>
       </tr>
-      <tr>
-        <td>asa</td>
-        <td>sas</td>
+      <tr class="text-center">
+        <td><%= link_to @user.followings.count, user_followings_path(@user), class: "align-middle" %></td>
+        <td><%= link_to @user.followers.count, user_followers_path(@user), class: "align-middle" %></td>
       </tr>
       </table>
     </div>
 
-    <div class="col-8">
+    <div class="col-7 offset-1">
       <% @posts.each do |post| %>
         <div class="row mt-3">
           <%= attachment_image_tag post, :image,size: "200x200" %>

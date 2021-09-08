@@ -5,7 +5,7 @@
       <%= attachment_image_tag post, :image,size: "200x200", class: "col-4 offset-2" %>
       <div class="col-6">
         <div class="row">
-          <p><%= attachment_image_tag post.user, :profile_image, size: "100x100", format: 'jpeg', fallback: "no_image.jpg"%></p>
+          <p><%= attachment_image_tag post.user, :profile_image, size: "100x100", format: 'jpeg', fallback: "no_image.jpg" %></p>
           <p class="d-flex align-items-center ml-3">
             <%= link_to post.user.name, user_path(post.user) %>
           </p>
@@ -15,8 +15,8 @@
           <%= link_to post.title, post_path(post) %>
         </p>
         <div class="row">
-        <p class="col-4">コメント数</p>
-        <p class="col-2">イイねボタン</p>
+        <p class="col-3"><%= post.post_comments.count %>コメント</p>
+        <p class="col-3"><%= post.favorites.count %>いいね</p>
         </div>
       </div>
     </div>

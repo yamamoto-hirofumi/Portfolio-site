@@ -8,6 +8,7 @@ class PostCommentsController < ApplicationController
     else
       @post = Post.find(params[:post_id])
       @post_comment = PostComment.new
+      @favorites = Favorite.where(post_id: @post.id) 
       render "posts/show"
     end
   end

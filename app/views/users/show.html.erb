@@ -38,8 +38,8 @@
                 <%= post.title %>
               <% end %>
             </p>
-            <p>コメント数</p>
-            <p>イイねボタン</p>
+            <p><%= post.post_comments.count %>コメント</p>
+            <p><%= post.favorites.count %>いいね</p>
           </div>
         </div>
       <% end %>

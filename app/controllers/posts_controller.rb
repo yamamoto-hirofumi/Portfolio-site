@@ -5,6 +5,8 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comment = PostComment.new
+    @favorites = Favorite.where(post_id: @post.id) 
   end
 
   def new
@@ -26,7 +28,13 @@ class PostsController < ApplicationController
   end
 
   def update
-    
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      flash[:notice] = "更新できました"
+      redirect_to post_path(@post)
+    else
+      render :edit
+    end
   end
 
   def destroy

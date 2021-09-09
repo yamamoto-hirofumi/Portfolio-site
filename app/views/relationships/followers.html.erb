@@ -1,0 +1,8 @@
+<div class="contianer">
+  <h2 class="text-center p-3">フォロワー</h2>
+  <% if @users.exists? %>
+    <%= render "users/index", users: @users %>
+  <% else %>
+    <p class="text-center">フォロワーユーザーはいません</p>
+  <% end %>
+</div>

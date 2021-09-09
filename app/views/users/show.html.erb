@@ -1,0 +1,53 @@
+<div class="container">
+  <% if current_user.id == @user.id %>
+    <h2 class="text-center p-3">マイページ</h2>
+  <% else %>
+    <h2 class="text-center p-3"><%= @user.name %>さんのページ</h2>
+  <% end %>
+  <div class="row">
+    <div class="col-3 offset-1 mt-3">
+      <p><%= attachment_image_tag @user, :profile_image, size: "150x150", format: 'jpeg', fallback: "no_image.jpg"%></p>
+      <p>
+        <%= @user.name %>
+        <% if @user.id == current_user.id %>
+          <%= link_to "", edit_user_path(@user), class: "btn btn-outline-secondary fas fa-user-cog m-2" %>
+        <% end %>
+      </p>
+      <p><%= @user.introduction %></p>
+      <% if current_user.id != @user.id %>
+        <p>
+          <%= render "relationships/follow_button", user: @user %>
+          /DM
+        </p>
+      <% end %> 
+      <table class="row">
+      <tr>
+        <th>フォロー</th>
+        <th>フォロワー</th>
+      </tr>
+      <tr class="text-center">
+        <td><%= link_to @user.followings.count, user_followings_path(@user), class: "align-middle" %></td>
+        <td><%= link_to @user.followers.count, user_followers_path(@user), class: "align-middle" %></td>
+      </tr>
+      </table>
+    </div>
+
+    <div class="col-7 offset-1">
+      <% @posts.each do |post| %>
+        <div class="row mt-3">
+          <%= attachment_image_tag post, :image,size: "200x200" %>
+          <div class="col-6 mt-5">
+            <p>
+              Title:
+              <%= link_to post_path(post) do %>
+                <%= post.title %>
+              <% end %>
+            </p>
+            <p><%= post.post_comments.count %>コメント</p>
+            <p><%= post.favorites.count %>いいね</p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -15,7 +15,7 @@
       </p>
       <p><%= @user.introduction %></p>
       <% if current_user.id != @user.id %>
-        <p>
+        <p id="follow-button_<%= @user.id %>">
           <%= render "relationships/follow_button", user: @user %>
           /DM
         </p>
@@ -26,8 +26,8 @@
         <th>フォロワー</th>
       </tr>
       <tr class="text-center">
-        <td><%= link_to @user.followings.count, user_followings_path(@user), class: "align-middle" %></td>
-        <td><%= link_to @user.followers.count, user_followers_path(@user), class: "align-middle" %></td>
+        <td id="followings-count_<%= @user.id %>"><%= link_to @user.followings.count, user_followings_path(@user), class: "align-middle" %></td>
+        <td id="followers-count_<%= @user.id %>"><%= link_to @user.followers.count, user_followers_path(@user), class: "align-middle" %></td>
       </tr>
       </table>
     </div>

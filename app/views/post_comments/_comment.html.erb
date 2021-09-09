@@ -1,0 +1,14 @@
+<% @post.post_comments.reverse.each do |post_comment| %>
+  <div class="row">
+    <div class="flex-column">
+      <div><%= attachment_image_tag post_comment.user, :profile_image, size: "50x50", format: 'jpeg', fallback: "no_image.jpg"%></div>
+      <p class="text-center"><%= link_to post_comment.user.name, user_path(post_comment.user) %></p>
+    </div>
+    <div class="offset-1 mt-3">
+      <%= post_comment.comment %>
+      <% if post_comment.user == current_user %>
+        <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), remote: true, method: :delete %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

@@ -1,17 +1,19 @@
-<%= form_with model: @post, url: url, local: true do |f| %>
-    <table class="row">
-      <tbody class="col-8 offset-4">
+<div class="col-8 offset-4">
+  <%= form_with model: @post, url: url, local: true do |f| %>
+  <%= render "layouts/errors", obj: post %>
+    <table class="table table-borderless">
+      <tbody>
         <tr>
           <td><%= f.label :image, "投稿画像" %></td>
           <td><%= f.attachment_field :image %></td>
         </tr>
         <tr>
-          <td><%= f.label :title, "タイトル" %></td>
-          <td><%= f.text_field :title %></td>
+          <td><%= f.label :title, "Title" %></td>
+          <td><%= f.text_field :title, :size=>"30" %></td>
         </tr>
         <tr>
-          <td><%= f.label :content, "投稿内容" %></td>
-          <td><%= f.text_field :content %></td>
+          <td><%= f.label :content, "Content" %></td>
+          <td><%= f.text_area :content, :size=>"30x5" %></td>
         </tr>
         <tr>
           <td></td>
@@ -20,3 +22,4 @@
       </tbody>
     </table>
   <% end %>
+</div>

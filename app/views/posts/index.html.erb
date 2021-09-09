@@ -1,21 +1,23 @@
 <div class="container">
-  <h2 class="text-center">投稿一覧</h2>
+  <h2 class="text-center p-3">投稿一覧</h2>
   <% @posts.each do |post| %>
-    <div class="row">
-      <%= attachment_image_tag post, :image,size: "250x250", class: "col-4" %>
-      <div class="col-8">
+    <div class="row mt-3">
+      <%= attachment_image_tag post, :image,size: "200x200", class: "col-4 offset-2" %>
+      <div class="col-6">
         <div class="row">
-          <p><%= image_tag('no_image.jpg') %></p>
-          <p class="d-flex align-items-center ml-3"><%= post.user.name %></p>
+          <p><%= attachment_image_tag post.user, :profile_image, size: "100x100", format: 'jpeg', fallback: "no_image.jpg" %></p>
+          <p class="d-flex align-items-center ml-3">
+            <%= link_to post.user.name, user_path(post.user) %>
+          </p>
         </div>
-        <p class="col-2">
-          title:
-          <%= link_to post_path(post) do %>
-            <%= post.title %>
-          <% end %>
+        <p class="col-6">
+          Title:
+          <%= link_to post.title, post_path(post) %>
         </p>
-        <p class="col-2">content:<%= post.content %></p>
-        <p class="col-2"><%= post.created_at.strftime('%Y/%m/%d') %></p>
+        <div class="row">
+          <p class="col-3"><%= post.post_comments.count %>コメント</p>
+          <p class="col-3"><%= post.favorites.count %>いいね</p>
+        </div>
       </div>
     </div>
   <% end %>

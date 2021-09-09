@@ -1,4 +1,3 @@
-<% binding.pry %>
-$("#follow-button_<%= @user.id %>").html("<%= j(render "relationships/follow_button", user: @user) %>");
-$("#followings-count_<%= @user.id %>").html("<%= link_to @user.followings.count, user_followings_path(@user), class: "align-middle" %>");
-$("#followers-count_<%= @user.id %>").html("<%= link_to @user.followers.count, user_followers_path(@user), class: "align-middle" %>");
+$("#follow-button").html("<%= j(render "relationships/follow_button", user: @user) %>");
+$("#followings-count").html("<%= j(render "relationships/follow_count_following", user: @user) %>");
+$("#followers-count").html("<%= j(render "relationships/follow_count_follower", user: @user) %>");

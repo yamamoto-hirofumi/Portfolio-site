@@ -18,6 +18,11 @@
         <p id="follow-button">
           <%= render "relationships/follow_button", user: @user %>
         </p>
+        <% if (current_user.following?(@user)) && (@user.following?(current_user))  %>
+        <p>
+          <%= link_to "DM", chat_path(@user.id) %>
+        </p>
+        <% end %>
       <% end %>
       <table class="row">
       <tr>

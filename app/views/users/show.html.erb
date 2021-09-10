@@ -20,7 +20,7 @@
         </p>
         <% if (current_user.following?(@user)) && (@user.following?(current_user))  %>
         <p>
-          <%= link_to "DM", chat_path(@user.id) %>
+          <%= link_to "Chat", chat_path(@user.id) %>
         </p>
         <% end %>
       <% end %>

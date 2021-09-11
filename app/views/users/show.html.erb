@@ -18,20 +18,18 @@
         <p id="follow-button">
           <%= render "relationships/follow_button", user: @user %>
         </p>
-        <% if (current_user.following?(@user)) && (@user.following?(current_user))  %>
-        <p>
-          <%= link_to "Chat", chat_path(@user.id) %>
-        </p>
-        <% end %>
       <% end %>
+      <p id="chat-button">
+        <%= render "chats/chat_button", user: @user %>
+      </p>
       <table class="row">
       <tr>
         <th>フォロー</th>
         <th>フォロワー</th>
       </tr>
       <tr class="text-center">
-        <td id="followings-count"><%= link_to @user.followings.count, user_followings_path(@user), class: "align-middle" %></td>
-        <td id="followers-count"><%= link_to @user.followers.count, user_followers_path(@user), class: "align-middle" %></td>
+        <td id="followings-count"><%= render "relationships/follow_count_following", user: @user %></td>
+        <td id="followers-count"><%= render "relationships/follow_count_follower", user: @user %></td>
       </tr>
       </table>
     </div>

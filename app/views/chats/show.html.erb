@@ -9,7 +9,7 @@
       <% end %>
     <% end %>
   </div>
-    <div class="text-center m-5">
+  <div class="text-center m-5">
     <%= form_with model: @chat, remote: true do |f| %>
       <%= f.text_field :message %>
       <%= f.hidden_field :room_id %>

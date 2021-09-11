@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = PostComment.new
-    @favorites = Favorite.where(post_id: @post.id) 
+    @favorites = Favorite.where(post_id: @post.id)
   end
 
   def new
@@ -15,7 +15,9 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
+    tag_list = params[:post][:tag_ids].split(",")
     if @post.save
+      @post.save_tags(tag_list)
       flash[:notice] = "投稿成功しました"
       redirect_to posts_path
     else
@@ -25,11 +27,14 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    @tag_list = @post.tags.pluck(:name).join(",")
   end
 
   def update
     @post = Post.find(params[:id])
+    tag_list = params[:post][:tag_ids].split(",")
     if @post.update(post_params)
+      @post.save_tags(tag_list)
       flash[:notice] = "更新できました"
       redirect_to post_path(@post)
     else

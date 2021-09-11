@@ -5,6 +5,12 @@
     <div class="col-6" id="post_<%= @post.id %>">
       <p><%= @post.user.name %></p>
       <p>title: <%= @post.title %></p>
+      <P>
+        tag:
+        <% @post.tags.each do |tag| %>
+          <%= tag.name %>
+        <% end %>
+      </P>
       <p>content: <%= @post.content %></p>
       <p class="comments-count">コメント数: <%= @post.post_comments.count %></p>
       <p class="favorite-btn"><%= render "favorites/favorite-btn", post: @post %></p>
@@ -30,7 +36,6 @@
           <%= f.text_area :comment, rows:"2", placeholder: "コメント入力欄" %>
           <%= f.submit "コメント", class: "btn btn-success btn-sm" %>
         </p>
-        <p id="notice"><%= notice %></p>
       <% end %>
       <div class="comments-index">
         <%= render "post_comments/comment", post: @post %>

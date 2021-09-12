@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many :followings, through: :relationships, source: :followed
   has_many :user_rooms
   has_many :chats
+  has_many :active_notifications, class_name: "Notification", foreign_key: "visiter_id", dependent: :destroy
+  has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
   attachment :profile_image
 
   validates :name, presence: true, uniqueness: true, length: { maximum: 20 }
@@ -27,4 +29,13 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
+  
+  # def created_notification_follow!(current_user)
+  #   temp = Notification.where(["visiter_id = ? and visited_id = ? and action = ?", current_user.id, id, 'follow'])
+  #   if temp.blank?
+  #     notification = current_user.active_notifications.new(
+  #       visited_id: id, action: "follow")
+  #     notification.save if notification.valid?
+  #   end
+  # end
 end

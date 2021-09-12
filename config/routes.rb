@@ -17,4 +17,5 @@ Rails.application.routes.draw do
   end
   resources :chats, only: [:create]
   get "chat/:id" => "chats#show", as: "chat"
+  resources :notifications, only: [:index]
 end

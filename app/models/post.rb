@@ -9,8 +9,16 @@ class Post < ApplicationRecord
   validates :title, length: { maximum: 50 }, presence: true
   validates :content, length: { maximum: 150 }, presence: true
 
+  def self.ranking
+    find(Favorite.group(:post_id).order("count(post_id) desc").limit(3).pluck(:post_id))
+  end
+
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
+  end
+
+  def written_by?(current_user)
+    user == current_user
   end
 
   def save_tags(savepost_tags)
@@ -35,24 +43,5 @@ class Post < ApplicationRecord
         post_id: id, visited_id: user_id, action: "favorite")
       notification.save if notification.valid?
     end
-  end
-
-
-  def create_notification_comment!(current_user, post_comment_id)
-    #全員に送る
-    temp_ids = PostComment.select(:user_id).where(post_id: id).where.not(user_id: current_user.id).distinct　
-    temp_ids.each do |temp_id|
-      save_notification_comment!(current_user, post_comment_id, temp_id["user_id"])
-    end
-    save_notification_comment!(current_user, post_comment_id, user_id) if temp_ids.blank?
-  end
-
-  def save_notification_comment!(current_user, post_comment_id, visited_id)
-    notification = current_user.active_notifications.new(
-    post_id: id, post_comment_id: post_comment_id, visited_id: visited_id, action: "comment")
-    if notification.visiter_id == notification.visited_id
-      notification.checked = true
-    end
-    notification.save if notification.valid?
   end
 end

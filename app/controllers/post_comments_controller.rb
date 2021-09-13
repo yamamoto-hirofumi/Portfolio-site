@@ -7,7 +7,8 @@ class PostCommentsController < ApplicationController
     @comment.post_id = @post.id
     @comment.save
     #binding.pry
-    @comment.create_notification_comment!(current_user, @comment.id)
+    @comment.create_notification_comment!(current_user)
+
   end
 
   def destroy

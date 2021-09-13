@@ -11,6 +11,9 @@
             <li class="m-3">
               <%= link_to "マイページ", user_path(current_user) %>
             </li>
+            <% if unchecked_notifications.any? %>
+              <i class="fa fa-circle" style="color: gold;"></i>
+            <% end %>
             <li class="m-3">
               <%= link_to "通知", notifications_path %>
             </li>

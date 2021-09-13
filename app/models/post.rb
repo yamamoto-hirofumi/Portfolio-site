@@ -27,55 +27,32 @@ class Post < ApplicationRecord
       self.tags << post_tag
     end
   end
-  
-  # def created_notification_favorite!(curret_user)
-  #   temp = Notification.where(["visitor_id = ? and visted_id = ? and post_id = ? and action = ?", curret_user.id, user_id, id, 'favorite'])
-  #   if temp.blank?
-  #     notification = cuurrent_user.active_notifications.new(
-  #       post_id: id, visited_id: user_id, action: "favorite")
-  #     if notification.visitor_id == notification.visited_id
-  #       notification.checked = true
-  #     end
-  #     notification.save if notification.valid?
-  #   end
-  # end
-  
-  # def created_notification_post_comment!(curret_user, post_comment_id)
-  #   temp_ids = PostComment.select(:user_id).where(post_id: id).where.not(user_id: curret_user.id).distinct
-  #   temp_ids.each do |temp_id|
-  #     save_notification_comment!(curret_user, post_comment_id, user_id) if temp_ids.blank?
-  #   end
-  # end
-  # def save_notification_comment!(curret_user, post_comment_id, visited_id)
-  #   notification = current_user.active_notifications.new(
-  #   post_id: id, post_comment_id: post_comment_id, visited_id: visited_id, action: "comment")
-  #   if notification.visitor_id == notification.visited_id
-  #     notification.checked = true
-  #   end
-  #   notification.save if notification.valid?
-  # end
-  
-  
-  # def create_notification_by(current_user)
-  #   notification = current.user.active_notifications.new(
-  #     post_id: id, visited_id: user_id, action: "favorite")
-  #   notification.save if notification.valid?
-  # end
-  
-  # def create_notification_post_comment!(curret_user, post_comment_id)
-  #   temp_ids = PostComment.select(:user_id).where(post_id: id).where.not(user_id: curret_user.id).distinct
-  #   temp_ids.each do |temp_id|
-  #     save_notification_comment!(current_user, post_comment_id, temp_id["user_id"])
-  #   end
-  #   save_notification_comment!(current_user, post_comment_id, user_id) if temp_ids.blank?
-  # end
-  
-  # def save_notification_comment!(current_user, post_comment_id, visited_id)
-  #   notification = current_user.active_notifications.new(
-  #     post_id: id, post_comment_id: post_comment_id, visited_id: visited_id, action: "comment")
-  #   if notification.visited_id == notification.visiter_id
-  #     notification.checked = true
-  #   end
-  #   notification.save if notification.valid?
-  # end
+
+  def create_notification_favorite!(current_user)
+    temp = current_user.active_notifications.where(post_id: self, action: 'favorite')
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+        post_id: id, visited_id: user_id, action: "favorite")
+      notification.save if notification.valid?
+    end
+  end
+
+
+  def create_notification_comment!(current_user, post_comment_id)
+    #全員に送る
+    temp_ids = PostComment.select(:user_id).where(post_id: id).where.not(user_id: current_user.id).distinct　
+    temp_ids.each do |temp_id|
+      save_notification_comment!(current_user, post_comment_id, temp_id["user_id"])
+    end
+    save_notification_comment!(current_user, post_comment_id, user_id) if temp_ids.blank?
+  end
+
+  def save_notification_comment!(current_user, post_comment_id, visited_id)
+    notification = current_user.active_notifications.new(
+    post_id: id, post_comment_id: post_comment_id, visited_id: visited_id, action: "comment")
+    if notification.visiter_id == notification.visited_id
+      notification.checked = true
+    end
+    notification.save if notification.valid?
+  end
 end

@@ -1,0 +1,16 @@
+
+[1mFrom:[0m /home/ec2-user/environment/Make enjoy life/app/models/post.rb:33 Post#create_notification_favorite!:
+
+    [1;34m31[0m: [32mdef[0m [1;34mcreate_notification_favorite![0m(current_user)
+    [1;34m32[0m:   binding.pry
+ => [1;34m33[0m:   temp = [1;34;4mNotification[0m.where([[31m[1;31m"[0m[31mvisiter_id = ? and visited_id = ? and post_id = ? and action = ? [1;31m"[0m[31m[0m, current_user.id, user_id, id, [31m[1;31m'[0m[31mfavorite[1;31m'[0m[31m[0m])
+    [1;34m34[0m:   [32mif[0m temp.blank?
+    [1;34m35[0m:     notification = current_user.active_notifications.new(
+    [1;34m36[0m:       [35mpost_id[0m: id, [35mvisited_id[0m: user_id, [35maction[0m: [31m[1;31m"[0m[31mfavorite[1;31m"[0m[31m[0m)
+    [1;34m37[0m:     [32mif[0m notification.visiter_id == notification.visited_id
+    [1;34m38[0m:       notification.checked = [1;36mtrue[0m
+    [1;34m39[0m:     [32mend[0m
+    [1;34m40[0m:     notification.save [32mif[0m notification.valid?
+    [1;34m41[0m:   [32mend[0m
+    [1;34m42[0m: [32mend[0m
+

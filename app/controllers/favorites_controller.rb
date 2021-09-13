@@ -5,7 +5,7 @@ class FavoritesController < ApplicationController
     @post = Post.find(params[:post_id])
     favorites = @post.favorites.new(user_id: current_user.id)
     favorites.save
-    #@post.create_notification_by(current_user)
+    @post.create_notification_favorite!(current_user)
     @favorites = Favorite.where(post_id: params[:post_id])
   end
 

@@ -7,7 +7,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comment = PostComment.new
     @favorites = Favorite.where(post_id: @post.id)
-  end
+  end 
 
   def new
     @post = Post.new
@@ -51,7 +51,7 @@ class PostsController < ApplicationController
       render :show
     end
   end
-  
+
   def search
     if params[:keyword].present?
       @posts = Post.where("content LIKE?", "%#{params[:keyword]}%")

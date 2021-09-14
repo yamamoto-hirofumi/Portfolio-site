@@ -44,3 +44,14 @@
 .top-header {
   font-family: 'Londrina Shadow', cursive;
 }
+
+.header-top-image {
+  width: 100%;
+  height: 100px;
+  background-image: url(image.jpg);
+  background-size: cover; 
+}
+
+.body-image {
+  backgroud-color: rgba(255, 220, 140, .3);
+}

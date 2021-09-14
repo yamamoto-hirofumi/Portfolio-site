@@ -41,6 +41,9 @@ class Post < ApplicationRecord
     if temp.blank?
       notification = current_user.active_notifications.new(
         post_id: id, visited_id: user_id, action: "favorite")
+      if notification.visiter_id == notification.visited_id
+        notification.checked = true
+      end
       notification.save if notification.valid?
     end
   end

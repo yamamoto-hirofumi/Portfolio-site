@@ -1,12 +1,11 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!,except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @posts = Post.all.order(created_at: :desc).page(params[:page]).per(10)
     @tags = Tag.all
-    @tag_ranks = Tag.find( PostTag.group(:tag_id).order('count(tag_id)desc').limit(5).pluck(:tag_id))
+    @tag_ranks = Tag.find(PostTag.group(:tag_id).order('count(tag_id)desc').limit(5).pluck(:tag_id))
   end
-
 
   def show
     @post = Post.find(params[:id])
@@ -21,7 +20,7 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.new(post_params)
     tag_list = params[:post][:tag_ids].split(",")
-    if !tag_list.blank? && @post.save
+    if tag_list.present? && @post.save
       @post.save_tags(tag_list)
       flash[:notice] = "投稿成功しました"
       redirect_to posts_path
@@ -69,7 +68,6 @@ class PostsController < ApplicationController
   def tag_index
     @posts = Post.where(tag_id: params[:tag_id]).page(params[:page]).per(10)
   end
-
 
   private
 

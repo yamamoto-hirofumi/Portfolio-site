@@ -22,17 +22,17 @@ class Post < ApplicationRecord
   end
 
   def save_tags(savepost_tags)
-    current_tags = self.tags.pluck(:name) unless self.tags.nil?
+    current_tags = tags.pluck(:name) unless tags.nil?
     old_tags = current_tags - savepost_tags
     new_tags = savepost_tags - current_tags
-    #binding.pry
+    # binding.pry
     old_tags.each do |old_name|
-      self.tags.delete Tag.find_by(name: old_name)
+      tags.delete Tag.find_by(name: old_name)
     end
 
     new_tags.each do |new_name|
       post_tag = Tag.find_or_create_by(name: new_name)
-      self.tags << post_tag
+      tags << post_tag
     end
   end
 
@@ -40,7 +40,8 @@ class Post < ApplicationRecord
     temp = current_user.active_notifications.where(post_id: self, action: 'favorite')
     if temp.blank?
       notification = current_user.active_notifications.new(
-        post_id: id, visited_id: user_id, action: "favorite")
+        post_id: id, visited_id: user_id, action: "favorite"
+      )
       if notification.visiter_id == notification.visited_id
         notification.checked = true
       end

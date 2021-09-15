@@ -1,4 +1,6 @@
-<%= form_with url: search_posts_path, local: true, method: :get do |f| %>
-  <%= f.text_field :keyword, placeholder: "キーワード検索" %>
-  <%= f.submit "検索", class: "btn btn-sm btn-success" %>
+<% if user_signed_in? %>
+  <%= form_with url: search_posts_path, local: true, method: :get do |f| %>
+    <%= f.text_field :keyword, placeholder: "キーワード検索" %>
+    <%= f.submit "検索", class: "btn btn-sm btn-success" %>
+  <% end %>
 <% end %>

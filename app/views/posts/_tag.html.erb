@@ -1,0 +1,14 @@
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th class="text-center">タグ</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% tags.each do |tag| %>
+				<tr>
+				<td style="border: none"><%= tag.name %>(<%= tag.posts.count %>)</td>
+				</tr>
+		<% end %>
+	</tbody>
+</table>

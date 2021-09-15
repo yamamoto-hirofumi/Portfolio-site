@@ -25,7 +25,7 @@ class Post < ApplicationRecord
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
     old_tags = current_tags - savepost_tags
     new_tags = savepost_tags - current_tags
-
+    #binding.pry
     old_tags.each do |old_name|
       self.tags.delete Tag.find_by(name: old_name)
     end
@@ -46,5 +46,9 @@ class Post < ApplicationRecord
       end
       notification.save if notification.valid?
     end
+  end
+
+  def self.search(keyword)
+    where(["title like? OR content like?", "%#{keyword}%", "%#{keyword}%"])
   end
 end

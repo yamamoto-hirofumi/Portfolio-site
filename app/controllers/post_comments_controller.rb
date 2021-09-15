@@ -6,9 +6,7 @@ class PostCommentsController < ApplicationController
     @comment = current_user.post_comments.new(post_comment_params)
     @comment.post_id = @post.id
     @comment.save
-    #binding.pry
     @comment.create_notification_comment!(current_user)
-
   end
 
   def destroy
@@ -17,7 +15,9 @@ class PostCommentsController < ApplicationController
     post_comment.destroy
   end
 
+
   private
+  
   def post_comment_params
     params.require(:post_comment).permit(:comment)
   end

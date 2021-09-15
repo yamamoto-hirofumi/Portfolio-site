@@ -1,4 +1,11 @@
 <div class="container">
   <h2 class="text-center p-3">投稿一覧</h2>
-  <%= render "posts/index", posts: @posts %>
+  <div class="row">
+    <div class="col-2">
+      <%= render 'posts/tag', tags: @tag_ranks %>
+    </div>
+    <div class="col-10">
+      <%= render "posts/index", posts: @posts %>
+    </div>
+  </div>
 </div>

@@ -1,7 +1,13 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!,except: [:index, :show]
+
+  def index
+    @users = User.all.order(created_at: :desc).page(params[:page]).per(10)
+  end
+
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.page(params[:page]).per(5)
+    @posts = @user.posts.all.order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def edit
@@ -18,11 +24,9 @@ class UsersController < ApplicationController
     end
   end
 
-  def index
-    @users = User.all
-  end
 
   private
+
   def user_params
     params.require(:user).permit(:name, :profile_image, :introduction)
   end

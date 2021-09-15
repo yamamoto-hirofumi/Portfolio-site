@@ -4,7 +4,7 @@
   <% else %>
     <h2 class="text-center p-3"><%= @user.name %>さんのページ</h2>
   <% end %>
-  <div class="row">
+  <div class="row mb-4">
     <div class="col-3 offset-1 mt-3">
       <p><%= attachment_image_tag @user, :profile_image, size: "150x150", format: 'jpeg', fallback: "no_image.jpg"%></p>
       <p>
@@ -52,4 +52,5 @@
       <% end %>
     </div>
   </div>
+  <%= paginate @posts %>
 </div>

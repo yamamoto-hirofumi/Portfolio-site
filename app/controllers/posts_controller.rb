@@ -1,13 +1,18 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!,except: [:index, :show]
+
   def index
-    @posts = Post.all
+    @posts = Post.all.order(created_at: :desc).page(params[:page]).per(10)
+    @tags = Tag.all
+    @tag_ranks = Tag.find( PostTag.group(:tag_id).order('count(tag_id)desc').limit(5).pluck(:tag_id))
   end
+
 
   def show
     @post = Post.find(params[:id])
     @comment = PostComment.new
     @favorites = Favorite.where(post_id: @post.id)
-  end 
+  end
 
   def new
     @post = Post.new
@@ -54,14 +59,20 @@ class PostsController < ApplicationController
 
   def search
     if params[:keyword].present?
-      @posts = Post.where("content LIKE?", "%#{params[:keyword]}%")
+      @posts = Post.search(params[:keyword]).page(params[:page]).per(10)
       @keyword = params[:keyword]
     else
-      @posts = Post.all
+      @posts = Post.all.page(params[:page]).per(10)
     end
   end
 
+  def tag_index
+    @posts = Post.where(tag_id: params[:tag_id]).page(params[:page]).per(10)
+  end
+
+
   private
+
   def post_params
     params.require(:post).permit(:image, :title, :content)
   end

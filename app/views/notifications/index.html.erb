@@ -4,8 +4,8 @@
   <% if @notifications.exists? %>
     <div class="users-index">
       <%= render "notifications/notification", notifications: @notifications %>
-      <%= paginate @notifications %>
     </div>
+    <%= paginate @notifications %>
   <% else %>
     <p class="text-center">通知はありません</p>
   <% end %>

@@ -19,6 +19,7 @@ class User < ApplicationRecord
                                   foreign_key: "visiter_id", dependent: :destroy
   has_many :passive_notifications, class_name: "Notification",
                                    foreign_key: "visited_id", dependent: :destroy
+  has_many :login_histories, dependent: :destroy
   attachment :profile_image
 
   validates :name, presence: true, uniqueness: true, length: { maximum: 20 }

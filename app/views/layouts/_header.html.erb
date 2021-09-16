@@ -11,10 +11,10 @@
             <li class="m-3">
               <%= link_to "マイページ", user_path(current_user), class: "btn btn-outline-dark btn-sm" %>
             </li>
-            <% if unchecked_notifications.any? %>
-              <i class="fa fa-circle" style="color: gold;"></i>
-            <% end %>
             <li class="m-3">
+              <% if unchecked_notifications.any? %>
+              <i class="fa fa-circle" style="color: yellow;"></i>
+            <% end %>
               <%= link_to "通知", notifications_path, class: "btn btn-outline-dark btn-sm" %>
             </li>
             <li class="m-3">

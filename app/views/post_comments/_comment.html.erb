@@ -2,7 +2,7 @@
 <% post.post_comments.reverse.each do |post_comment| %>
   <div class="row">
     <div class="flex-column">
-      <div><%= attachment_image_tag post_comment.user, :profile_image, size: "50x50", format: 'jpeg', fallback: "no_image.jpg"%></div>
+      <div><%= attachment_image_tag post_comment.user, :profile_image, size: "50x50", format: 'jpeg', fallback: "no_image.jpg", class: "rounded-circle" %></div>
       <p class="text-center"><%= link_to post_comment.user.name, user_path(post_comment.user) %></p>
     </div>
     <div class="offset-1 mt-3">

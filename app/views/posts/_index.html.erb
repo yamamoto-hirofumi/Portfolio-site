@@ -1,7 +1,7 @@
 <div class="mb-4">
   <% posts.each do |post| %>
     <div class="row mt-3">
-      <%= attachment_image_tag post, :image,size: "200x200", format: "jpeg", fallback: "post_no_image.jpeg", class: "col-4 offset-2" %>
+      <%= attachment_image_tag post, :image,size: "200x200", format: "jpeg", fallback: "post_no_image.jpeg", class: "col-4 offset-2 rounded-circle" %>
       <div class="col-4">
         <div class="row">
           <p><%= attachment_image_tag post.user, :profile_image, size: "100x100", format: 'jpeg', fallback: "no_image.jpg" %></p>

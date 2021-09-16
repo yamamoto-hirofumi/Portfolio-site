@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all.order(created_at: :desc).page(params[:page]).per(10)
     @tags = Tag.all
-    @tag_ranks = Tag.find(PostTag.group(:tag_id).order('count(tag_id)desc').limit(5).pluck(:tag_id))
+    @tag_ranks = Tag.tag_ranking
   end
 
   def show

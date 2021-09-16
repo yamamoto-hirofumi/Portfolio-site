@@ -25,7 +25,6 @@ class Post < ApplicationRecord
     current_tags = tags.pluck(:name) unless tags.nil?
     old_tags = current_tags - savepost_tags
     new_tags = savepost_tags - current_tags
-    # binding.pry
     old_tags.each do |old_name|
       tags.delete Tag.find_by(name: old_name)
     end
@@ -36,6 +35,7 @@ class Post < ApplicationRecord
     end
   end
 
+  # いいねされた時の通知
   def create_notification_favorite!(current_user)
     temp = current_user.active_notifications.where(post_id: self, action: 'favorite')
     if temp.blank?

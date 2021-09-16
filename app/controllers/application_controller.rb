@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
 
   private
 
+  # ログイン記録を作成する
   def count_login_history
     if current_user
       if current_user.login_histories.present?

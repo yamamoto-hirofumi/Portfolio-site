@@ -37,6 +37,7 @@ class User < ApplicationRecord
     followings.include?(user)
   end
 
+  # フォローされた時の通知
   def create_notification_follow!(current_user)
     temp = current_user.active_notifications.where(visited_id: id, action: "follow")
     if temp.blank?

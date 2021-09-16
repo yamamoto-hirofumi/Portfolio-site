@@ -22,11 +22,22 @@ class ApplicationController < ActionController::Base
     if current_user
       if current_user.login_histories.present?
         unless current_user.login_histories.last.logind_at.to_date == Date.today
-          current_userlogin_histories.create(logind_at: DateTime.now)
+          current_user.login_histories.create(logind_at: DateTime.now)
         end
       else
         current_user.login_histories.create(logind_at: DateTime.now)
       end
+    end
+  end
+
+  def continuous_login
+    case current_user.lonin_histories.where(logind_at: now.ago(1.month)..(Time.now) )
+    when lonin_histories.count = 10
+      
+    when lonin_histories.count = 20
+      
+    when lonin_histories.count = 30
+      
     end
   end
 end

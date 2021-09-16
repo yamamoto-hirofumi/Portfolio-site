@@ -1,11 +1,11 @@
 module ApplicationHelper
   def login_history_text
-    if current_user.login_histories.count < 2
-      "凡人"
-    elsif current_user.login_histories.count < 3
-      "普通"
+    if current_user.login_histories.count < 10
+      image_tag("login_count_image3", size: '100x40' )
+    elsif current_user.login_histories.count < 20
+      image_tag("login_count_image2", size: '100x40' )
     else
-      "達人"
+      image_tag("login_count_image1", size: '100x40' )
     end
   end
 end

@@ -4,7 +4,7 @@
       <%= link_to user_path(notification.visiter) do %>
         <%= attachment_image_tag notification.visiter, :profile_image, :fill,100,100, format: "jpeg", fallback: "no_image.jpg", size: "50x50", class: "mb-3 mr-2" %>
       <% end %>
-      <%= notification_form(notification) %><span class="moderate-font">(<%= notification.created_at.to_s(:datetime_jp) %>)</span><br>
+      <%= notification_form(notification) %><span class="moderate-font">(<%= notification.created_at.strftime("%d日 %H:%M") %>)</span><br>
     <% end %>
   </div>
 <% end %>

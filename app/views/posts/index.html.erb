@@ -9,3 +9,18 @@
     </div>
   </div>
 </div>
+<script>
+  <% if request.referer == new_user_session_url %>
+    switch (<%= continuous_login %>) {
+    case 10:
+      alert("おめでとうございます😀連続ログイン1０日目です！！");
+      break;
+    case 20:
+      alert("おめでとうございます😀連続ログイン2０日目です！！");
+      break;
+    case 30:
+      alert("おめでとうございます😀連続ログイン3０日目です！！");
+      break;
+    }
+  <% end %>
+</script>

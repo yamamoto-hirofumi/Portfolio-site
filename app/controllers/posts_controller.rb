@@ -25,6 +25,7 @@ class PostsController < ApplicationController
       flash[:notice] = "投稿成功しました"
       redirect_to posts_path
     else
+      flash[:error] = "タグを入れてください"
       render :new
     end
   end
@@ -37,11 +38,12 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     tag_list = params[:post][:tag_ids].split(",")
-    if @post.update(post_params)
+    if tag_list.present? && @post.update(post_params)
       @post.save_tags(tag_list)
       flash[:notice] = "更新できました"
       redirect_to post_path(@post)
     else
+      flash[:error] = "タグを入れてください"
       render :edit
     end
   end

@@ -43,12 +43,3 @@ $(document).on('turbolinks:load',function () {
     hidePrevious : false
   });
 });
-
-
-var count_10 = "おめでとうございます😀連続ログイン1０日目です！！";
-
-
-var count_20 = "おめでとうございます😀連続ログイン2０日目です！！";
-
-
-var count_30 = "おめでとうございます😀連続ログイン3０日目です！！";

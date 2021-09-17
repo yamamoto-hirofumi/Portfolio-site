@@ -5,6 +5,7 @@
   <div class="col-8 offset-4">
     <%= form_with model: @post, url: post_path(@post), local: true do |f| %>
     <%= render "layouts/errors", obj: @post %>
+     <p id="error" class="offset-2"><%= flash[:error] %></p>
       <table class="table table-borderless">
         <tbody>
           <tr>

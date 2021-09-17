@@ -1,7 +1,7 @@
 <div class="container">
   <h2 class="text-center p-3">投稿詳細</h2>
   <div class="row">
-      <%= attachment_image_tag @post, :image, size: "300x300", format: "jpeg", fallback: "post_no_image.jpeg", class: "offset-2 col-4 rounded-circle" %>
+      <%= attachment_image_tag @post, :image, size: "300x300", format: "jpeg", fallback: "post_no_image.jpeg", class: "offset-2 col-4" %>
     <div class="col-6" id="post_<%= @post.id %>">
       <p><%= @post.user.name %></p>
       <p>title: <%= @post.title %></p>

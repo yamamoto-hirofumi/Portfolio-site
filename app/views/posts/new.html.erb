@@ -3,6 +3,7 @@
     <h1 class="col-12 text-center  my-3">新規投稿</h1>
   </div>
   <div class="col-8 offset-4">
+    <p id="error" class="offset-2"><%= flash[:error] %></p>
     <%= form_with model: @post, url: posts_path, local: true do |f| %>
     <%= render "layouts/errors", obj: @post %>
       <table class="table table-borderless">

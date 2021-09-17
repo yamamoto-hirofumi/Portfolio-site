@@ -34,6 +34,9 @@
         <td id="followers-count"><%= render "relationships/follow_count_follower", user: @user %></td>
       </tr>
       </table>
+      <% if user_signed_in? && @user == current_user %>
+        <%= link_to "退会する", users_withdraw_path, class: "btn btn-sm btn-danger m-3" %>
+      <% end %>
     </div>
 
     <div class="col-7 offset-1">

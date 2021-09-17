@@ -19,11 +19,12 @@ Rails.application.routes.draw do
       get "tag_index"
     end
   end
-  resources :users, only: [:index, :show, :edit, :update] do
+  resources :users, only: [:index, :show, :edit, :update, :destroy] do
     resource :relationships, only: [:create, :destroy]
     get "followings" => "relationships#followings", as: "followings"
     get "followers" => "relationships#followers", as: "followers"
   end
+  get "users/withdraw/:id" => "users#withdraw", as: "users_withdraw"
   resources :chats, only: [:create]
   get "chat/:id" => "chats#show", as: "chat"
   resources :notifications, only: [:index]

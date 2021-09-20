@@ -5,14 +5,14 @@ RSpec.describe "ログイン後のテスト", type: :request do
   let!(:other_user) { create(:user) }
   let!(:post) { create(:post, user: user) }
   let!(:other_post) { create(:post, user: other_user) }
-  
+
   before do
     visit new_user_session_path
     fill_in 'user[name]', with: user.name
     fill_in 'user[password]', with: user.password
     click_button 'ログイン'
   end
-  
+
   describe "ヘッダーのテスト" do
     before do
      visit root_path
@@ -77,7 +77,7 @@ RSpec.describe "ログイン後のテスト", type: :request do
       end
     end
   end
-  
+
   describe "投稿一覧画面の確認" do
     before do
       visit posts_path
@@ -98,14 +98,14 @@ RSpec.describe "ログイン後のテスト", type: :request do
         expect(page).to have_link other_post.title, href: post_path(other_post)
       end
     end
-    
+
     describe "新規投稿画面のテスト" do
       before do
         visit new_post_path
       end
       context "表示内容が正しい" do
         it "URLが正しい" do
-          expect(current_path).to eq "/posts/new" 
+          expect(current_path).to eq "/posts/new"
         end
         it "新規投稿と表示されている" do
           expect(page).to have_content '新規投稿'
@@ -126,7 +126,7 @@ RSpec.describe "ログイン後のテスト", type: :request do
           expect(page).to have_button '新規投稿'
         end
       end
-      
+
       context "投稿成功時のテスト" do
         before do
           fill_in 'post[title]', with: Faker::Lorem.characters(number: 5)
@@ -141,7 +141,7 @@ RSpec.describe "ログイン後のテスト", type: :request do
         # end
       end
     end
-    
+
     describe "ユーザー詳細画面のテスト" do
        before do
         visit user_path(user)
@@ -174,9 +174,9 @@ RSpec.describe "ログイン後のテスト", type: :request do
         it 'ユーザー退会へのリンクが存在する' do
           expect(page).to have_link '退会する', href: users_withdraw_path(user)
         end
-      end 
+      end
     end
-    
+
     describe "投稿詳細画面のテスト" do
       before do
         visit post_path(post)
@@ -204,19 +204,19 @@ RSpec.describe "ログイン後のテスト", type: :request do
           expect(page).to have_link '削除', href: post_path(post)
         end
       end
-      
+
       context '編集リンクのテスト' do
         it '編集画面に遷移する' do
           click_link '編集'
           expect(current_path).to eq '/posts/' + post.id.to_s + '/edit'
         end
       end
-  
+
       context '削除リンクのテスト' do
         before do
           click_link '削除'
         end
-  
+
         it '正しく削除される' do
           expect(Post.where(id: post.id).count).to eq 0
         end
@@ -225,7 +225,7 @@ RSpec.describe "ログイン後のテスト", type: :request do
         end
       end
     end
-    
+
     describe "投稿編集画面のテスト" do
       before do
         visit edit_post_path(post)
@@ -246,6 +246,53 @@ RSpec.describe "ログイン後のテスト", type: :request do
         it '投稿更新ボタンが表示される' do
           expect(page).to have_button '投稿更新'
         end
+      end
+
+    #   context '編集成功のテスト' do
+    #   before do
+    #     @post_old_title = post.title
+    #     @post_old_content = post.content
+    #     fill_in 'post[title]', with: Faker::Lorem.characters(number: 10)
+    #     fill_in 'post[content]', with: Faker::Lorem.characters(number: 30)
+    #     click_button '投稿更新'
+    #   end
+
+    #   it 'Titleが正しく更新される' do
+    #     expect(post.reload.title).not_to eq @post_old_title
+    #   end
+    #   it 'bodyが正しく更新される' do
+    #     expect(post.reload.content).not_to eq @post_old_content
+    #   end
+    #   it 'リダイレクト先が、更新した投稿の詳細画面になっている' do
+    #     expect(current_path).to eq '/posts/' + post.id.to_s
+    #     expect(page).to have_content '投稿詳細'
+    #   end
+    # end
+    end
+
+    describe '会員覧画面のテスト' do
+      before do
+        visit users_path
+      end
+      context '表示内容の確認' do
+        it 'URLが正しい' do
+          expect(current_path).to eq '/users'
+        end
+        it '自分と他人の画像が表示される' do
+          expect(all('img').size).to eq(2)
+        end
+        it '自分と他人の名前がそれぞれ表示される' do
+          expect(page).to have_content user.name
+          expect(page).to have_content other_user.name
+        end
+        it '自分と他人のshowリンクがそれぞれ表示される' do
+          expect(page).to have_link user.name, href: user_path(user)
+          expect(page).to have_link other_user.name, href: user_path(other_user)
+        end
+        # it '自分と他人の紹介文がそれぞれ表示される' do
+        #   expect(page).to have_content user.introdaction
+        #   expect(page).to have_content other_user.introdaction
+        # end
       end
     end
   end

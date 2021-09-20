@@ -28,8 +28,9 @@ ActiveRecord::Schema.define(version: 2021_09_15_074911) do
   end
 
   create_table "login_histories", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "logind_at", null: false
+    t.datetime "flashd_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "postモデルのテスト", type: :model do
+RSpec.describe "Postモデルのテスト", type: :model do
   describe "バリデーションのテスト" do
 
     let(:user) { FactoryBot.create(:user) }

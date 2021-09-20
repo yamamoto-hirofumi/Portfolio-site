@@ -22,9 +22,8 @@ RSpec.describe "ログイン前のテスト", type: :request do
       it "ログインのリンクが表示されている" do
         expect(page).to have_content "ログイン"
       end
-      it "" do
-      end
-      
+    end
+
     context "リンクの確認" do 
       it "トップページへのリンク先が正しい" do
         expect(page).to have_link "トップページ", href: root_path
@@ -39,10 +38,8 @@ RSpec.describe "ログイン前のテスト", type: :request do
         expect(page).to have_link "ログイン", href: new_user_session_path
       end
     end
-    
-    end
   end
-  
+
   describe "トップページ画面のテスト" do
     before do
       visit root_path
@@ -161,7 +158,4 @@ RSpec.describe "ログイン前のテスト", type: :request do
       end
     end
   end
-  
-  
-  
 end

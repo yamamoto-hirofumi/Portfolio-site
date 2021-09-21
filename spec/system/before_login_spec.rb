@@ -48,6 +48,12 @@ RSpec.describe "ログイン前のテスト", type: :request do
       it "URLが正しい" do
         expect(current_path).to eq "/"
       end
+      it "「Welcome to Make enjoy life」と表示される" do
+        expect(page).to have_content "Welcome to Make enjoy life"
+      end
+      it "「いいねランキン」と表示される" do
+        expect(page).to have_content "いいねランキング"
+      end
     end
   end
   
@@ -58,6 +64,9 @@ RSpec.describe "ログイン前のテスト", type: :request do
     context "表示内容が正しい" do
       it "URLが正しい" do
         expect(current_path).to eq "/about"
+      end
+      it "「サイト紹介」と表示される" do
+        expect(page).to have_content "サイト紹介"
       end
     end
   end
@@ -70,7 +79,7 @@ RSpec.describe "ログイン前のテスト", type: :request do
       it "URLが正しい" do
         expect(current_path).to eq "/users/sign_up"
       end
-       it "「新規登録」と表示される" do
+      it "「新規登録」と表示される" do
         expect(page).to have_content "新規登録"
       end
       it "nameフォームが表示される" do

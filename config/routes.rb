@@ -15,8 +15,7 @@ Rails.application.routes.draw do
     resources :post_comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
     collection do
-      get "search"
-      get "tag_index"
+      get "search" => "posts#search", as: "search"
     end
   end
   resources :users, only: [:index, :show, :edit, :update, :destroy] do

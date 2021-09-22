@@ -4,6 +4,6 @@ class Tag < ApplicationRecord
   validates :name, uniqueness: true, presence: true
 
   def self.tag_ranking
-    find(PostTag.group(:tag_id).order('count(tag_id)desc').limit(5).pluck(:tag_id))
+    find(PostTag.group(:tag_id).order(Arel.sql('count(tag_id)desc')).limit(5).pluck(:tag_id))
   end
 end

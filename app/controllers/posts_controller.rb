@@ -5,6 +5,7 @@ class PostsController < ApplicationController
     @posts = Post.all.order(created_at: :desc).page(params[:page]).per(10)
     @tags = Tag.all
     @tag_ranks = Tag.tag_ranking
+    # @post =
   end
 
   def show
@@ -67,8 +68,9 @@ class PostsController < ApplicationController
     end
   end
 
-  def tag_index
-    @posts = Post.where(tag_id: params[:tag_id]).page(params[:page]).per(10)
+  def sort
+    @selection = params[:sort_keyword]
+    @posts = Post.sort(@selection)
   end
 
   private

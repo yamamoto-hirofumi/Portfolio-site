@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resource :favorites, only: [:create, :destroy]
     collection do
       get "search" => "posts#search", as: "search"
+      get "sort" => "posts#sort"
     end
   end
   resources :users, only: [:index, :show, :edit, :update, :destroy] do

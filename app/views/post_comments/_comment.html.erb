@@ -3,7 +3,11 @@
   <div class="row">
     <div class="flex-column">
       <div><%= attachment_image_tag post_comment.user, :profile_image, size: "50x50", format: 'jpeg', fallback: "no_image.jpg", class: "rounded-circle" %></div>
-      <p class="text-center"><%= link_to post_comment.user.name, user_path(post_comment.user) %></p>
+      <% if user_signed_in? %>
+        <p class="text-center"><%= link_to post_comment.user.name, user_path(post_comment.user) %></p>
+      <% else %>
+        <p class="text-center"><%= post_comment.user.name %></p>
+      <% end %>
     </div>
     <div class="offset-1 mt-3">
       <%= post_comment.comment %>

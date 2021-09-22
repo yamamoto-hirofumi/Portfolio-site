@@ -6,7 +6,11 @@
         <div class="row">
           <p><%= attachment_image_tag post.user, :profile_image, size: "100x100", format: 'jpeg', fallback: "no_image.jpg", class: "rounded-circle" %></p>
           <p class="d-flex align-items-center ml-3">
-            <%= link_to post.user.name, user_path(post.user) %>
+            <% if user_signed_in? %>
+              <%= link_to post.user.name, user_path(post.user) %>
+            <% else %>
+              <%= post.user.name %>
+            <% end %>
           </p>
         </div>
         <p class="col-5">
@@ -19,4 +23,4 @@
     </div>
   <% end %>
 </div>
-<%= paginate posts %>
+<%#= paginate posts %>

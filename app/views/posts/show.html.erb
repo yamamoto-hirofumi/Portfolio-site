@@ -3,15 +3,19 @@
   <div class="row">
       <%= attachment_image_tag @post, :image, size: "300x300", format: "jpeg", fallback: "post_no_image.jpeg", class: "offset-2 col-4" %>
     <div class="col-6 mt-2" id="post_<%= @post.id %>">
-      <p><%= link_to @post.user.name, user_path(@post.user) %></p>
-      <p>title: <%= @post.title %></p>
+      <% if user_signed_in? %>
+        <p>Writer: <%= link_to @post.user.name, user_path(@post.user) %></p>
+      <% else %>
+        <p>Writer: <%= @post.user.name %></p>
+      <% end %>
+      <p>Title: <%= @post.title %></p>
       <P>
-        tag:
+        Tag:
         <% @post.tags.each do |tag| %>
           <%= tag.name %>
         <% end %>
       </P>
-      <p>content: <%= @post.content %></p>
+      <p>Content: <%= @post.content %></p>
       <p class="comments-count">コメント数: <%= @post.post_comments.count %></p>
       <p class="favorite-btn"><%= render "favorites/favorite-btn", post: @post %></p>
       <p>投稿日: <%= @post.created_at.strftime('%Y/%m/%d') %></p>

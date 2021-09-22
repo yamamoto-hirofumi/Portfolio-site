@@ -49,7 +49,22 @@ class Post < ApplicationRecord
     end
   end
 
+  # 検索時のメソッド
   def self.search(keyword)
     where(["title like? OR content like?", "%#{keyword}%", "%#{keyword}%"])
+  end
+
+  # ソート時のメソッド
+  def self.sort(selection)
+    case selection
+    when "new"
+      all.order(created_at: :DESC)
+    when "old"
+      all.order(created_at: :ASC)
+    when "favorites"
+      find(Favorite.group(:post_id).order(Arel.sql("count(post_id) desc")).pluck(:post_id))
+    when "comments"
+      find(PostComment.group(:post_id).order(Arel.sql("count(post_id) desc")).pluck(:post_id))
+    end
   end
 end

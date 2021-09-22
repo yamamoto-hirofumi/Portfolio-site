@@ -8,4 +8,17 @@ module ApplicationHelper
       image_tag(asset_path("login_count_image1.jpeg"), size: '100x40')
     end
   end
+
+  def sort_selection
+    case @selection
+    when "new"
+      "投稿が新しい順"
+    when "old"
+      "投稿が古い順"
+    when "favorites"
+      "いいねが多い順"
+    when "comments"
+      "コメントが多い順"
+    end
+  end
 end

@@ -7,6 +7,7 @@ RSpec.describe "ログイン後のテスト", type: :request do
   let!(:other_post) { create(:post, user: other_user) }
   let(:favorite) { create(:favorite, user_id: user.id, post_id: post.id) }
 
+
   before do
     visit new_user_session_path
     fill_in "user[name]", with: user.name
@@ -365,12 +366,12 @@ RSpec.describe "ログイン後のテスト", type: :request do
 
     describe "検索後の画面のテスト" do
       before do
-        visit search_posts_path
+        visit posts_path
       end
 
       context "表示内容が正しい" do
         it "URLが正しい" do
-          expect(current_path).to eq "/posts/search"
+          expect(current_path).to eq "/posts"
         end
         # it "「に関する投稿」と表示されている" do
         #   expect(page).to have_content "に関する投稿"

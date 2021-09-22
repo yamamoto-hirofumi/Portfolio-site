@@ -13,16 +13,16 @@
 ActiveRecord::Schema.define(version: 2021_09_15_074911) do
 
   create_table "chats", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "room_id"
+    t.bigint "user_id"
+    t.bigint "room_id"
     t.string "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "post_id"
+    t.bigint "user_id"
+    t.bigint "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -36,10 +36,10 @@ ActiveRecord::Schema.define(version: 2021_09_15_074911) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.integer "visiter_id", null: false
-    t.integer "visited_id", null: false
-    t.integer "post_id"
-    t.integer "post_comment_id"
+    t.bigint "visiter_id", null: false
+    t.bigint "visited_id", null: false
+    t.bigint "post_id"
+    t.bigint "post_comment_id"
     t.string "action", default: "", null: false
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
@@ -52,22 +52,22 @@ ActiveRecord::Schema.define(version: 2021_09_15_074911) do
 
   create_table "post_comments", force: :cascade do |t|
     t.text "comment"
-    t.integer "user_id"
-    t.integer "post_id"
+    t.bigint "user_id"
+    t.bigint "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "post_tags", force: :cascade do |t|
-    t.integer "post_id"
-    t.integer "tag_id"
+    t.bigint "post_id"
+    t.bigint "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id", "tag_id"], name: "index_post_tags_on_post_id_and_tag_id", unique: true
   end
 
   create_table "posts", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.string "title", null: false
     t.text "content", null: false
     t.string "image_id"
@@ -76,8 +76,8 @@ ActiveRecord::Schema.define(version: 2021_09_15_074911) do
   end
 
   create_table "relationships", force: :cascade do |t|
-    t.integer "follower_id"
-    t.integer "followed_id"
+    t.bigint "follower_id"
+    t.bigint "followed_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["followed_id"], name: "index_relationships_on_followed_id"
@@ -97,8 +97,8 @@ ActiveRecord::Schema.define(version: 2021_09_15_074911) do
   end
 
   create_table "user_rooms", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "room_id"
+    t.bigint "user_id"
+    t.bigint "room_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -163,6 +163,8 @@ GEM
     nokogiri (1.12.4)
       mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
+    order_as_specified (1.7)
+      activerecord (>= 5.0.0)
     orm_adapter (0.5.0)
     parallel (1.20.1)
     parser (3.0.2.0)
@@ -344,6 +346,7 @@ DEPENDENCIES
   kaminari (~> 1.2.1)
   listen (>= 3.0.5, < 3.2)
   mysql2
+  order_as_specified
   pry-byebug
   puma (~> 3.11)
   rails (~> 5.2.6)

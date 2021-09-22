@@ -3,9 +3,9 @@ require "rails_helper"
 RSpec.describe "ログイン前のテスト", type: :request do
   describe "ヘッダーのテスト" do
     before do
-     visit root_path
+      visit root_path
     end
-      
+
     context "表示内容の確認" do
       it "タイトルが表示されている" do
         expect(page).to have_content "Make enjoy life"
@@ -24,7 +24,7 @@ RSpec.describe "ログイン前のテスト", type: :request do
       end
     end
 
-    context "リンクの確認" do 
+    context "リンクの確認" do
       it "トップページへのリンク先が正しい" do
         expect(page).to have_link "トップページ", href: root_path
       end
@@ -44,6 +44,7 @@ RSpec.describe "ログイン前のテスト", type: :request do
     before do
       visit root_path
     end
+
     context "表示内容が正しい" do
       it "URLが正しい" do
         expect(current_path).to eq "/"
@@ -56,11 +57,12 @@ RSpec.describe "ログイン前のテスト", type: :request do
       end
     end
   end
-  
+
   describe "サイト紹介画面のテスト" do
     before do
       visit about_path
     end
+
     context "表示内容が正しい" do
       it "URLが正しい" do
         expect(current_path).to eq "/about"
@@ -70,11 +72,12 @@ RSpec.describe "ログイン前のテスト", type: :request do
       end
     end
   end
-  
+
   describe "新規登録画面のテスト" do
     before do
       visit new_user_registration_path
     end
+
     context "表示画像が正しい" do
       it "URLが正しい" do
         expect(current_path).to eq "/users/sign_up"
@@ -98,7 +101,7 @@ RSpec.describe "ログイン前のテスト", type: :request do
         expect(page).to have_button "新規登録"
       end
     end
-    
+
     context "新規登録成功のテスト" do
       before do
         fill_in 'user[name]', with: Faker::Lorem.characters(number: 10)
@@ -106,6 +109,7 @@ RSpec.describe "ログイン前のテスト", type: :request do
         fill_in 'user[password]', with: 'password'
         fill_in 'user[password_confirmation]', with: 'password'
       end
+
       it '正しく新規登録される' do
         expect { click_button '新規登録' }.to change(User.all, :count).by(1)
       end
@@ -115,13 +119,14 @@ RSpec.describe "ログイン前のテスト", type: :request do
       end
     end
   end
-  
+
   describe "ログイン画面のテスト" do
     let(:user) { create(:user) }
 
     before do
       visit new_user_session_path
     end
+
     context '表示内容の確認' do
       it 'URLが正しい' do
         expect(current_path).to eq '/users/sign_in'
@@ -142,7 +147,7 @@ RSpec.describe "ログイン前のテスト", type: :request do
         expect(page).not_to have_field 'user[email]'
       end
     end
-    
+
     context 'ログイン成功のテスト' do
       before do
         fill_in 'user[name]', with: user.name
@@ -154,7 +159,7 @@ RSpec.describe "ログイン前のテスト", type: :request do
         expect(current_path).to eq '/posts'
       end
     end
-    
+
     context 'ログイン失敗のテスト' do
       before do
         fill_in 'user[name]', with: ''

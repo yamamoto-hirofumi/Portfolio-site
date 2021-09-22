@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   private
-  
+
   #   # 連続ログインで動くメソッド
   # def continuous_login
   #   #binding.pry
@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
   #           break
   #         end
   #       end
-  
+
   #       num = 1
   #       # first_dayから今日までのlogind_atをループさせる
   #       #binding.pry
@@ -52,7 +52,7 @@ class ApplicationController < ActionController::Base
   #     end
   #   #end
   # end
-  
+
   # # ログイン記録を作成する
   # def count_login_history
   #   if current_user
@@ -66,7 +66,7 @@ class ApplicationController < ActionController::Base
   #     end
   #   end
   # end
-  
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:email])
   end

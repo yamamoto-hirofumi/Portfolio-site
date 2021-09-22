@@ -2,17 +2,17 @@ require "rails_helper"
 
 RSpec.describe "Postモデルのテスト", type: :model do
   describe "バリデーションのテスト" do
+    subject { test_post.valid? }
 
     let(:user) { FactoryBot.create(:user) }
     let!(:post) { build(:post, user_id: user.id) }
 
-    subject { test_post.valid? }
     let(:test_post) { post }
 
     context "titleカラム" do
       it "空でないこと" do
         test_post.title = ""
-        is_expected.to eq false;
+        is_expected.to eq false
       end
       it '50文字以上であること: 50文字は〇' do
         post.title = Faker::Lorem.characters(number: 50)
@@ -20,14 +20,14 @@ RSpec.describe "Postモデルのテスト", type: :model do
       end
       it "50文字以下であること: 51文字は×" do
         post.title = Faker::Lorem.characters(number: 51)
-        expect(post.valid?).to eq false;
+        expect(post.valid?).to eq false
       end
     end
 
     context "contentカラム" do
       it "空でないこと" do
         test_post.content = ""
-        is_expected.to eq false;
+        is_expected.to eq false
       end
       it '150文字以上であること: 150文字は〇' do
         post.content = Faker::Lorem.characters(number: 150)
@@ -35,7 +35,7 @@ RSpec.describe "Postモデルのテスト", type: :model do
       end
       it "150字以下であること: 151文字は×" do
         post.content = Faker::Lorem.characters(number: 151)
-        expect(post.valid?).to eq false;
+        expect(post.valid?).to eq false
       end
     end
   end

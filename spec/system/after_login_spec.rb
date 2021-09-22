@@ -16,7 +16,7 @@ RSpec.describe "ログイン後のテスト", type: :request do
 
   describe "ヘッダーのテスト" do
     before do
-     visit root_path
+      visit root_path
     end
 
     context "表示内容の確認" do
@@ -84,13 +84,14 @@ RSpec.describe "ログイン後のテスト", type: :request do
     before do
       visit posts_path
     end
+
     context "表示内容が正しい" do
       it "URLが正しい" do
         expect(current_path).to eq "/posts"
       end
       it "投稿一覧と表示されている" do
-          expect(page).to have_content "投稿一覧"
-        end
+        expect(page).to have_content "投稿一覧"
+      end
       it "自分の名前と他人の名前のリンクが正しい" do
         expect(page).to have_link "", href: user_path(post.user)
         expect(page).to have_link "", href: user_path(other_post.user)
@@ -108,7 +109,7 @@ RSpec.describe "ログイン後のテスト", type: :request do
       before do
         visit new_post_path
       end
-      
+
       context "表示内容が正しい" do
         it "URLが正しい" do
           expect(current_path).to eq "/posts/new"
@@ -138,7 +139,7 @@ RSpec.describe "ログイン後のテスト", type: :request do
           fill_in "post[title]", with: Faker::Lorem.characters(number: 5)
           fill_in "post[content]", with: Faker::Lorem.characters(number: 20)
         end
-        
+
         # it "自分の新しい投稿が正しく保存される" do
         #   expect { click_button "新規投稿" }.to change(user.posts, :count).by(1)
         # end
@@ -153,6 +154,7 @@ RSpec.describe "ログイン後のテスト", type: :request do
       before do
         visit user_path(user)
       end
+
       context "表示内容が正しい" do
         it "URLが正しい" do
           expect(current_path).to eq "/users/" + user.id.to_s
@@ -195,6 +197,7 @@ RSpec.describe "ログイン後のテスト", type: :request do
       before do
         visit post_path(post)
       end
+
       context "表示内容が正しい" do
         it "URLが正しい" do
           expect(current_path).to eq "/posts/" + post.id.to_s
@@ -244,6 +247,7 @@ RSpec.describe "ログイン後のテスト", type: :request do
       before do
         visit edit_post_path(post)
       end
+
       context "表示内容が正しい" do
         it "URLが正しい" do
           expect(current_path).to eq "/posts/" + post.id.to_s + "/edit"
@@ -262,26 +266,26 @@ RSpec.describe "ログイン後のテスト", type: :request do
         end
       end
 
-    #   context "編集成功のテスト" do
-    #   before do
-    #     @post_old_title = post.title
-    #     @post_old_content = post.content
-    #     fill_in "post[title]", with: Faker::Lorem.characters(number: 10)
-    #     fill_in "post[content]", with: Faker::Lorem.characters(number: 30)
-    #     click_button "投稿更新"
-    #   end
+      #   context "編集成功のテスト" do
+      #   before do
+      #     @post_old_title = post.title
+      #     @post_old_content = post.content
+      #     fill_in "post[title]", with: Faker::Lorem.characters(number: 10)
+      #     fill_in "post[content]", with: Faker::Lorem.characters(number: 30)
+      #     click_button "投稿更新"
+      #   end
 
-    #   it "Titleが正しく更新される" do
-    #     expect(post.reload.title).not_to eq @post_old_title
-    #   end
-    #   it "bodyが正しく更新される" do
-    #     expect(post.reload.content).not_to eq @post_old_content
-    #   end
-    #   it "リダイレクト先が、更新した投稿の詳細画面になっている" do
-    #     expect(current_path).to eq "/posts/" + post.id.to_s
-    #     expect(page).to have_content "投稿詳細"
-    #   end
-    # end
+      #   it "Titleが正しく更新される" do
+      #     expect(post.reload.title).not_to eq @post_old_title
+      #   end
+      #   it "bodyが正しく更新される" do
+      #     expect(post.reload.content).not_to eq @post_old_content
+      #   end
+      #   it "リダイレクト先が、更新した投稿の詳細画面になっている" do
+      #     expect(current_path).to eq "/posts/" + post.id.to_s
+      #     expect(page).to have_content "投稿詳細"
+      #   end
+      # end
     end
 
     describe "会員一覧画面のテスト" do
@@ -341,14 +345,14 @@ RSpec.describe "ログイン後のテスト", type: :request do
         it "「退会画面」と表示されている" do
           expect(page).to have_content "退会画面"
         end
-         it "退会しないのリンクが表示されている" do
+        it "退会しないのリンクが表示されている" do
           expect(page).to have_content "退会しない"
         end
         it "退会するのリンクが表示されている" do
           expect(page).to have_content "退会する"
         end
       end
-  
+
       context "リンクの確認" do
         it "退会しないへのリンク先が正しい" do
           expect(page).to have_link "退会しない", href: user_path(user)
@@ -358,12 +362,12 @@ RSpec.describe "ログイン後のテスト", type: :request do
         end
       end
     end
-    
+
     describe "検索後の画面のテスト" do
       before do
         visit search_posts_path
       end
-      
+
       context "表示内容が正しい" do
         it "URLが正しい" do
           expect(current_path).to eq "/posts/search"
@@ -371,14 +375,14 @@ RSpec.describe "ログイン後のテスト", type: :request do
         # it "「に関する投稿」と表示されている" do
         #   expect(page).to have_content "に関する投稿"
         # end
-      end  
+      end
     end
-    
-        describe "フォロワー一覧画面のテスト" do
+
+    describe "フォロワー一覧画面のテスト" do
       before do
         visit user_followers_path(user)
       end
-      
+
       context "表示内容が正しい" do
         it "URLが正しい" do
           expect(current_path).to eq "/users/" + user.id.to_s + "/followers"
@@ -386,14 +390,14 @@ RSpec.describe "ログイン後のテスト", type: :request do
         it "「フォロワー」と表示されている" do
           expect(page).to have_content "フォロワー"
         end
-      end  
+      end
     end
-    
-        describe "フォロー一覧の画面のテスト" do
+
+    describe "フォロー一覧の画面のテスト" do
       before do
         visit user_followings_path(user)
       end
-      
+
       context "表示内容が正しい" do
         it "URLが正しい" do
           expect(current_path).to eq "/users/" + user.id.to_s + "/followings"
@@ -401,8 +405,7 @@ RSpec.describe "ログイン後のテスト", type: :request do
         it "「フォロー中」と表示されている" do
           expect(page).to have_content "フォロー中"
         end
-      end  
+      end
     end
-    
   end
 end

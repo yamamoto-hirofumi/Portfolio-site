@@ -2,10 +2,17 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @posts = Post.all.order(created_at: :desc).page(params[:page]).per(10)
     @tags = Tag.all
     @tag_ranks = Tag.tag_ranking
-    # @post =
+    @keyword = params[:keyword]
+    @sort_keyword = params[:sort_keyword]
+    if @keyword
+       @posts = Post.where(["title like? OR content like?", "%#{@keyword}%", "%#{@keyword}%"]).page(params[:page]).per(10)
+    elsif @sort_keyword
+      @posts = Post.sort(@sort_keyword).page(params[:page]).per(10)
+    else
+      @posts = Post.all.order(created_at: :desc).page(params[:page]).per(10)
+    end
   end
 
   def show
@@ -57,20 +64,6 @@ class PostsController < ApplicationController
     else
       render :show
     end
-  end
-
-  def search
-    if params[:keyword].present?
-      @posts = Post.search(params[:keyword]).page(params[:page]).per(10)
-      @keyword = params[:keyword]
-    else
-      @posts = Post.all.page(params[:page]).per(10)
-    end
-  end
-
-  def sort
-    @selection = params[:sort_keyword]
-    @posts = Post.sort(@selection)
   end
 
   private

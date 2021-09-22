@@ -49,11 +49,6 @@ class Post < ApplicationRecord
     end
   end
 
-  # 検索時のメソッド
-  def self.search(keyword)
-    where(["title like? OR content like?", "%#{keyword}%", "%#{keyword}%"])
-  end
-
   # ソート時のメソッド
   def self.sort(selection)
     case selection

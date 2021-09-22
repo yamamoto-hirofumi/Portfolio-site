@@ -14,10 +14,6 @@ Rails.application.routes.draw do
   resources :posts do
     resources :post_comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
-    collection do
-      get "search" => "posts#search", as: "search"
-      get "sort" => "posts#sort"
-    end
   end
   resources :users, only: [:index, :show, :edit, :update, :destroy] do
     resource :relationships, only: [:create, :destroy]

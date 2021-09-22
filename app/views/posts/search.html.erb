@@ -1,8 +1,0 @@
-<div class="container">
-  <% if @keyword.blank? %>
-    <h2 class="text-center p-3">投稿一覧</h2>
-  <% else%>
-    <h2 class="text-center p-3"><span class="text-primary m-2"><%= @keyword %></span>に関する投稿</h2>
-  <% end %>
-  <%= render "posts/index", posts: @posts %>
-</div>

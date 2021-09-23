@@ -11,8 +11,8 @@
 <div class="container">
   <h2 class="text-center m-3">いいねランキング</h2>
   <% @post_favorite_ranks.each.with_index(1) do |post, i| %>
-    <h3><b class="offset-3">第<%= i %>位</b></h3>
-    <div class="row mt-3">
+    <h3 class="offset-2"><b>第<%= i %>位</b></h3>
+    <div class="row mb-3">
       <%= attachment_image_tag post, :image, size: "200x200", format: "jpeg", fallback: "post_no_image.jpeg", class: "col-4 offset-2" %>
       <div class="col-6">
         <div class="row">

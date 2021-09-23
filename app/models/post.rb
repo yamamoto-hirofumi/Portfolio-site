@@ -58,10 +58,12 @@ class Post < ApplicationRecord
     when "old"
       all.order(created_at: :ASC)
     when "favorites"
-      ids = find(Favorite.group(:post_id).order(Arel.sql("count(post_id) desc")).pluck(:post_id)).pluck(:id)
+      ids = find(Favorite.group(:post_id).order(Arel.sql("count(post_id) desc")).
+        pluck(:post_id)).pluck(:id)
       Post.where(id: ids).order_as_specified(id: ids)
     when "comments"
-      ids = find(PostComment.group(:post_id).order(Arel.sql("count(post_id) desc")).pluck(:post_id)).pluck(:id)
+      ids = find(PostComment.group(:post_id).order(Arel.sql("count(post_id) desc")).
+        pluck(:post_id)).pluck(:id)
       Post.where(id: ids).order_as_specified(id: ids)
     end
   end

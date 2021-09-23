@@ -156,7 +156,6 @@ RSpec.describe "ログイン前のテスト", type: :request do
       end
 
       it 'ログイン後のリダイレクト先が、投稿一覧画面になっている' do
-       
         expect(current_path).to eq '/posts'
       end
     end

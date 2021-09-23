@@ -7,7 +7,6 @@ RSpec.describe "ログイン後のテスト", type: :request do
   let!(:other_post) { create(:post, user: other_user) }
   let(:favorite) { create(:favorite, user_id: user.id, post_id: post.id) }
 
-
   before do
     visit new_user_session_path
     fill_in "user[name]", with: user.name

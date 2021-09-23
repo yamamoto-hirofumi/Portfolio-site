@@ -11,14 +11,14 @@ module ApplicationHelper
 
   def sort_selection
     case params[:sort_keyword]
-      when "new"
-        "投稿が新しい順"
-      when "old"
-        "投稿が古い順"
-      when "favorites"
-        "いいねが多い順"
-      when "comments"
-        "コメントが多い順"
+    when "new"
+      "投稿が新しい順"
+    when "old"
+      "投稿が古い順"
+    when "favorites"
+      "いいねが多い順"
+    when "comments"
+      "コメントが多い順"
     end
   end
 end

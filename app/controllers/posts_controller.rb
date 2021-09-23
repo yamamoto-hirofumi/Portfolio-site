@@ -7,7 +7,8 @@ class PostsController < ApplicationController
     @keyword = params[:keyword]
     @sort_keyword = params[:sort_keyword]
     if @keyword
-       @posts = Post.where(["title like? OR content like?", "%#{@keyword}%", "%#{@keyword}%"]).page(params[:page]).per(10)
+      @posts = Post.where(["title like? OR content like?", "%#{@keyword}%", "%#{@keyword}%"]).
+        page(params[:page]).per(10)
     elsif @sort_keyword
       @posts = Post.sort(@sort_keyword).page(params[:page]).per(10)
     else

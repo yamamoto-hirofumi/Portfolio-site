@@ -1,4 +1,5 @@
 module ApplicationHelper
+  # ログインカウントに応じ画像変更
   def login_history_image
     if current_user.login_histories.count < 10
       image_tag(asset_path("login_count_image3.jpeg"), size: '100x40')
@@ -8,7 +9,7 @@ module ApplicationHelper
       image_tag(asset_path("login_count_image1.jpeg"), size: '100x40')
     end
   end
-
+  # ソート機能
   def sort_selection
     case params[:sort_keyword]
     when "new"

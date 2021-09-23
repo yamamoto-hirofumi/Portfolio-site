@@ -12,12 +12,12 @@ class RelationshipsController < ApplicationController
     @user = User.find(params[:user_id])
   end
 
-  def followings
+  def followings #フォロー一覧
     user = User.find(params[:user_id])
     @users = user.followings.order(created_at: :desc).page(params[:page]).per(10)
   end
 
-  def followers
+  def followers #フォロワー一覧
     user = User.find(params[:user_id])
     @users = user.followers.order(created_at: :desc).page(params[:page]).per(10)
   end

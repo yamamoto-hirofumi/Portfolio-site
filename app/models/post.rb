@@ -21,7 +21,7 @@ class Post < ApplicationRecord
   def written_by?(current_user)
     user == current_user
   end
-
+  # タグ機能
   def save_tags(savepost_tags)
     current_tags = tags.pluck(:name) unless tags.nil?
     old_tags = current_tags - savepost_tags
@@ -36,7 +36,7 @@ class Post < ApplicationRecord
     end
   end
 
-  # いいねされた時の通知
+  # いいねされた時の通知機能
   def create_notification_favorite!(current_user)
     temp = current_user.active_notifications.where(post_id: self, action: 'favorite')
     if temp.blank?

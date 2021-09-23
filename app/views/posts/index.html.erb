@@ -1,9 +1,11 @@
-<div class="offset-9 my-3">
-  <%= render 'layouts/search' %>
-</div>
-<div class="offset-9 my-3">
-    <%= render "posts/sort_form", post: @post %>
-</div>
+<% if user_signed_in? %>
+  <div class="offset-9 my-3">
+    <%= render 'posts/search' %>
+  </div>
+  <div class="offset-9 my-3">
+      <%= render "posts/sort_form", post: @post %>
+  </div>
+<% end %>
 <div class="container">
   <div class="post-title">
     <%= render "posts/post_title", keyword: @keyword, sort_keyword: @sort_keyword %>

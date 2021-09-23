@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
-  def withdraw
+  def withdraw　#退会
   end
 
   private

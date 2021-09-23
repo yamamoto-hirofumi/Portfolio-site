@@ -6,12 +6,12 @@ class PostsController < ApplicationController
     @tag_ranks = Tag.tag_ranking
     @keyword = params[:keyword]
     @sort_keyword = params[:sort_keyword]
-    if @keyword
+    if @keyword #検索時
       @posts = Post.where(["title like? OR content like?", "%#{@keyword}%", "%#{@keyword}%"]).
         page(params[:page]).per(10)
-    elsif @sort_keyword
+    elsif @sort_keyword # ソート時
       @posts = Post.sort(@sort_keyword).page(params[:page]).per(10)
-    else
+    else #普通の時
       @posts = Post.all.order(created_at: :desc).page(params[:page]).per(10)
     end
   end

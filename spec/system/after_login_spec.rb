@@ -129,6 +129,12 @@ RSpec.describe "ログイン後のテスト", type: :request do
         it "Contentフォームに値が入っていない" do
           expect(find_field("post[content]").text).to be_blank
         end
+        it "Tagフォームが表示される" do
+          expect(page).to have_field "post[tag_ids]"
+        end
+        it "Tagフォームに値が入っていない" do
+          expect(find_field("post[tag_ids]").text).to be_blank
+        end
         it "新規投稿ボタンが表示される" do
           expect(page).to have_button "新規投稿"
         end
@@ -138,11 +144,12 @@ RSpec.describe "ログイン後のテスト", type: :request do
         before do
           fill_in "post[title]", with: Faker::Lorem.characters(number: 5)
           fill_in "post[content]", with: Faker::Lorem.characters(number: 20)
+          fill_in "post[tag_ids]", with: Faker::Lorem.characters(number: 2)
         end
 
-        # it "自分の新しい投稿が正しく保存される" do
-        #   expect { click_button "新規投稿" }.to change(user.posts, :count).by(1)
-        # end
+        it "自分の新しい投稿が正しく保存される" do
+          expect { click_button "新規投稿" }.to change(user.posts, :count).by(1)
+        end
         it "リダイレクト先が、保存できた投稿の詳細画面になっている" do
           click_button "新規投稿"
           expect(current_path).to eq "/posts"
@@ -258,8 +265,11 @@ RSpec.describe "ログイン後のテスト", type: :request do
         it "Title編集フォームが表示される" do
           expect(page).to have_field "post[title]", with: post.title
         end
-        it "opinion編集フォームが表示される" do
+        it "Content編集フォームが表示される" do
           expect(page).to have_field "post[content]", with: post.content
+        end
+        it "Tag編集フォームが表示される" do
+          expect(page).to have_field "post[tag_ids]", with: post.tags
         end
         it "投稿更新ボタンが表示される" do
           expect(page).to have_button "投稿更新"

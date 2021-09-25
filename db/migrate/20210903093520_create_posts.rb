@@ -7,6 +7,5 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.string :image_id
       t.timestamps
     end
-    add_foreign_key :posts, :users
   end
 end

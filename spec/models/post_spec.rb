@@ -29,7 +29,7 @@ RSpec.describe "Postモデルのテスト", type: :model do
         test_post.content = ""
         is_expected.to eq false
       end
-      it '150文字以上であること: 150文字は〇' do
+      it '150文字以下であること: 150文字は〇' do
         post.content = Faker::Lorem.characters(number: 150)
         is_expected.to eq true
       end
@@ -38,6 +38,13 @@ RSpec.describe "Postモデルのテスト", type: :model do
         expect(post.valid?).to eq false
       end
     end
+    context "User_idカラム" do
+      it "空でないこと" do
+        post.user_id = nil
+        expect(post).to be_invalid
+      end
+    end
+    
   end
 
   describe "アソシエーションのテスト" do

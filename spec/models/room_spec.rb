@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Roomモデルのテスト', type: :model do
+  let(:room) { create(:room) }
   describe 'アソシエーションのテスト' do
     context "UserRoomモデルとの関係" do
       it "1:Nとなっている" do

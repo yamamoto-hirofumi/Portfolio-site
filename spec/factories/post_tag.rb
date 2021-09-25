@@ -1,6 +1,6 @@
 FactoryBot.define do
-  factory :favorite do
+  factory :post_tag do
     association :post
-    association :user
+    association :tag
   end
 end

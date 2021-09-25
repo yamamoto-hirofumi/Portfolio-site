@@ -6,7 +6,6 @@ RSpec.describe 'Userモデルのテスト', type: :model do
 
     let!(:other_user) { FactoryBot.create(:user) }
     let(:user) { build(:user) }
-
     let(:test_user) { user }
 
     context "nameカラム" do

@@ -4,9 +4,11 @@
   <% else %>
     <h2 class="text-center p-3"><%= @user.name %>さんのページ</h2>
   <% end %>
-  <div class="row">
+
+  <div class="row mb-4">
     <div class="col-3 offset-1 mt-3">
-      <p><%= attachment_image_tag @user, :profile_image, size: "150x150", format: 'jpeg', fallback: "no_image.jpg"%></p>
+      <p class="mb-0 ml-4"><%= login_history_image %></p>
+      <p><%= attachment_image_tag @user, :profile_image, size: "150x150", format: 'jpeg', fallback: "no_image.jpg", class: "rounded-circle" %></p>
       <p>
         <%= @user.name %>
         <% if @user.id == current_user.id %>
@@ -15,27 +17,32 @@
       </p>
       <p><%= @user.introduction %></p>
       <% if current_user.id != @user.id %>
-        <p>
+        <p id="follow-button">
           <%= render "relationships/follow_button", user: @user %>
-          /DM
         </p>
-      <% end %> 
+      <% end %>
+      <p id="chat-button">
+        <%= render "chats/chat_button", user: @user %>
+      </p>
       <table class="row">
       <tr>
         <th>フォロー</th>
         <th>フォロワー</th>
       </tr>
       <tr class="text-center">
-        <td><%= link_to @user.followings.count, user_followings_path(@user), class: "align-middle" %></td>
-        <td><%= link_to @user.followers.count, user_followers_path(@user), class: "align-middle" %></td>
+        <td id="followings-count"><%= render "relationships/follow_count_following", user: @user %></td>
+        <td id="followers-count"><%= render "relationships/follow_count_follower", user: @user %></td>
       </tr>
       </table>
+      <% if user_signed_in? && @user == current_user %>
+        <%= link_to "退会する", users_withdraw_path, class: "btn btn-sm btn-danger m-3" %>
+      <% end %>
     </div>
 
     <div class="col-7 offset-1">
       <% @posts.each do |post| %>
         <div class="row mt-3">
-          <%= attachment_image_tag post, :image,size: "200x200" %>
+          <%= attachment_image_tag post, :image,size: "200x200", format: "jpeg", fallback: "post_no_image.jpeg" %>
           <div class="col-6 mt-5">
             <p>
               Title:
@@ -50,4 +57,5 @@
       <% end %>
     </div>
   </div>
+  <%= paginate @posts %>
 </div>

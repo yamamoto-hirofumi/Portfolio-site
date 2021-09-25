@@ -17,6 +17,81 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
+
+
+#container{
+  height: 500px;
+}
+
+.image1 {
+  background-image: image-url("image1.jpg");
+}
+.image2 {
+  background-image: image-url("image2.jpg");
+}
+.image3 {
+  background-image: image-url("image3.jpg");
+}
+.image4 {
+  background-image: image-url("image4.jpg");
+}
+.image5 {
+  background-image: image-url("image5.jpg");
+}
+
+.top-header {
+  font-family: 'Lobster', cursive;
+
+}
+
+.header-title {
+  font-family: 'Gluten', cursive;
+  font-size: 30px;
+}
+
+.header-top-image {
+  width: 100%;
+  height: 100px;
+  background-image: image-url("top_image.jpg");
+  background-size: cover;
+}
+
+.body {
+    background-color: #DDFFFF	;
+}
+
+//ページネーションのデザイン
+.pagination>li>a {
+  border: none;
+  color: #696969;
+}
+
+.pagination>.active>a {
+  background: #93c9ff;
+  border-radius: 15px;
+}
+
+.pagination>li>a:hover {
+  border-radius: 15px;
+}
+
 .pagination {
   justify-content: center;
+}
+
+#notice {
+  color: #006400;
+}
+
+.footer{
+  background-color: #CCCCCC;
+  width: 100%;
+  height: 60px;
+}
+
+.about_image {
+  width: 100%;
+  height: 500px;
+  background-image: image-url("about_image.jpg");
+  background-size: cover;
 }

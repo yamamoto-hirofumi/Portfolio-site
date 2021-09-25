@@ -18,3 +18,19 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+// トップページのスライドショー
+$(document).on('turbolinks:load',function () {
+  $("#theTarget").skippr({
+    transition : 'slide',
+    speed : 1000,
+    easing : 'easeOutQuart',
+    navType : 'block',
+    childrenElementType : 'div',
+    arrows : true,
+    autoPlay : true,
+    autoPlayDuration : 6000,
+    keyboardOnAlways : true,
+    hidePrevious : false
+  });
+});

@@ -1,24 +1,25 @@
-<div class="row">
-    <table class="table table-borderless table-hover">
-      <thead class="table-info">
+<div class="row mb-4">
+  <table class="table table-borderless table-hover">
+    <thead class="table-info">
+      <tr class="text-center col-12">
+        <th class="col-2">プロフィール画像</th>
+        <th class="col-2">名前</th>
+        <th class="col-4">プロフィール</th>
+        <th class="col-2">フォロー / フォロワー数</th>
+        <th class="col-2">投稿数</th>
+      </tr>
+    </thead>
+    <% users.each do |user| %>
+      <tbody>
         <tr class="text-center col-12">
-          <th class="col-2">プロフィール画像</th>
-          <th class="col-2">名前</th>
-          <th class="col-4">プロフィール</th>
-          <th class="col-2">フォロー/フォロワー数</th>
-          <th class="col-2">投稿数</th>
+          <td class="col-2 align-middle"><%= attachment_image_tag user, :profile_image, size: "80x80", format: 'jpeg', fallback: "no_image.jpg", class: "rounded-circle" %></td>
+          <td class="col-2 align-middle"><%= link_to user.name, user_path(user) %></td>
+          <td class="col-4 align-middle"><%= user.introduction%></td>
+          <td class="col-2 align-middle"><%= render "relationships/follow_count_following", user: user %>  /  <%= render "relationships/follow_count_follower", user: user %></td>
+          <td class="col-2 align-middle"><%= user.posts.count %></td>
         </tr>
-      </thead>
-      <% users.each do |user| %>
-        <tbody>
-          <tr class="text-center col-12">
-            <td class="col-2 align-middle"><%= attachment_image_tag user, :profile_image, size: "80x80", format: 'jpeg', fallback: "no_image.jpg"%></td>
-            <td class="col-2 align-middle"><%= link_to user.name, user_path(user) %></td>
-            <td class="col-4 align-middle"><%= user.introduction%></td>
-            <td class="col-2 align-middle">aa</td>
-            <td class="col-2 align-middle"><%= user.posts.count %></td>
-          </tr>
-        </tbody>
-      <% end %>
-    </table>
-  </div>
+      </tbody>
+    <% end %>
+  </table>
+</div>
+<%= paginate @users %>

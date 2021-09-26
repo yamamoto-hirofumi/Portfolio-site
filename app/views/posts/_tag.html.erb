@@ -7,7 +7,7 @@
 	<tbody>
 		<% tags.each do |tag| %>
 				<tr>
-				<td style="border: none"><%= tag.name %>(<%= tag.posts.count %>)</td>
+				<td style="border: none"><%= link_to tag.name, posts_path({tag: tag.name}), remote: true %>(<%= tag.posts.count %>)</td>
 				</tr>
 		<% end %>
 	</tbody>

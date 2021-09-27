@@ -2,6 +2,7 @@ require "rails_helper"
 
 RSpec.describe "Chatモデルのテスト", type: :model do
   let(:chat) { create(:chat) }
+
   describe "バリデーションのテスト" do
     context "messageカラム" do
       it "messageがある場合、有効であること" do
@@ -20,7 +21,8 @@ RSpec.describe "Chatモデルのテスト", type: :model do
         expect(chat).to be_invalid
       end
     end
-      it "user_idとroom_idがある場合、有効であること" do
+
+    it "user_idとroom_idがある場合、有効であること" do
       expect(chat).to be_valid
     end
     it "user_idがない場合、無効であること" do
@@ -32,7 +34,7 @@ RSpec.describe "Chatモデルのテスト", type: :model do
       expect(chat).to be_invalid
     end
   end
-  
+
   describe "アソシエーションのテスト" do
     context "Userモデルとの関係" do
       it "N:1となっている" do

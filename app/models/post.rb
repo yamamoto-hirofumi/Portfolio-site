@@ -21,6 +21,7 @@ class Post < ApplicationRecord
   def written_by?(current_user)
     user == current_user
   end
+
   # タグ機能
   def save_tags(savepost_tags)
     current_tags = tags.pluck(:name) unless tags.nil?

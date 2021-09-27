@@ -2,6 +2,7 @@ require "rails_helper"
 
 RSpec.describe "Tagモデルのテスト", type: :model do
   let(:tag) { create(:tag) }
+
   describe "バリデーションのテスト" do
     context "nameカラム" do
       it "タグ名がある場合、有効であること" do

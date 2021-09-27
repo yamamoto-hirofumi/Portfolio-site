@@ -5,6 +5,7 @@ FactoryBot.define do
     after(:create) do |post|
       create_list(:post_tag, 1, post: post, tag: create(:tag))
     end
+
     user
   end
 end

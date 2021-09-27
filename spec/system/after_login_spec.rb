@@ -269,18 +269,20 @@ RSpec.describe "ログイン後のテスト", type: :request do
         expect(page).to have_field "post[content]", with: post.content
       end
       it "Tag編集フォームが表示される" do
-        expect(page).to have_field "post[tag_ids]", with: post.tags
+        expect(page).to have_field "post[tag_ids]"
       end
       it "投稿更新ボタンが表示される" do
         expect(page).to have_button "投稿更新"
       end
     end
 
-      context "編集成功のテスト" do
+    context "編集成功のテスト" do
+      i = 0
       before do
+        i += 1
         @post_old_title = post.title
         @post_old_content = post.content
-        @post_old_tag = post.tags
+        @post_old_tag = post.tags if i == 1
         fill_in "post[title]", with: Faker::Lorem.characters(number: 10)
         fill_in "post[content]", with: Faker::Lorem.characters(number: 30)
         fill_in "post[tag_ids]", with: Faker::Lorem.characters(number: 2)
@@ -293,8 +295,9 @@ RSpec.describe "ログイン後のテスト", type: :request do
       it "Contentが正しく更新される" do
         expect(post.reload.content).not_to eq @post_old_content
       end
+
       it "Tagが正しく更新される" do
-        expect(post.reload.tags).not_to eq @post_old_tag
+        expect(post.tags).not_to eq @post_old_tag
       end
       it "リダイレクト先が、更新した投稿の詳細画面になっている" do
         expect(current_path).to eq "/posts/" + post.id.to_s
@@ -404,18 +407,6 @@ RSpec.describe "ログイン後のテスト", type: :request do
       end
       it "「フォロー中」と表示されている" do
         expect(page).to have_content "フォロー中"
-      end
-    end
-  end
-
-  describe "Chat画面のテスト" do
-    before do
-      visit chat_path(user)
-      let(:chat) { create(:chat) }
-    end
-    context "表示内容が正しい" do
-      it "URLが正しい" do
-        expect(current_path).to eq "/chat/" + user.id.to_s
       end
     end
   end

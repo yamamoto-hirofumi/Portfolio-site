@@ -9,17 +9,18 @@ module ApplicationHelper
       image_tag(asset_path("login_count_image1.jpeg"), size: '100x40')
     end
   end
+
   # ソート機能
   def sort_selection
     case params[:sort_keyword]
     when "new"
-      "投稿が新しい順"
+      "投稿の新しい順"
     when "old"
-      "投稿が古い順"
+      "投稿の古い順"
     when "favorites"
-      "いいねが多い順"
+      "いいねの多い順"
     when "comments"
-      "コメントが多い順"
+      "コメントの多い順"
     end
   end
 end

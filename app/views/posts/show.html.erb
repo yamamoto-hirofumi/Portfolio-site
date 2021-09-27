@@ -1,8 +1,8 @@
 <div class="container">
   <h2 class="text-center p-3">投稿詳細</h2>
   <div class="row">
-    <%= attachment_image_tag @post, :image, size: "300x300", format: "jpeg", fallback: "post_no_image.jpeg", class: "offset-2 col-4" %>
-    <div class="col-6 mt-2" id="post_<%= @post.id %>">
+      <%= attachment_image_tag @post, :image, size: "300x300", format: "jpeg", fallback: "post_no_image.jpeg", class: "offset-2 col-4" %>
+    <div class="col-6 mt-2">
       <% if user_signed_in? %>
         <p>Writer: <%= link_to @post.user.name, user_path(@post.user) %></p>
       <% else %>
@@ -17,7 +17,7 @@
       </P>
       <p>Content: <%= @post.content %></p>
       <p class="comments-count">コメント数: <%= @post.post_comments.count %></p>
-      <p class="favorite-btn"><%= render "favorites/favorite-btn", post: @post %></p>
+      <p id="like-box"><%= render "favorites/favorite-btn", post: @post %></p>
       <p>投稿日: <%= @post.created_at.strftime('%Y/%m/%d') %></p>
       <% if @post.written_by?(current_user) %>
         <%= link_to "編集", edit_post_path(@post), class: "btn btn-primary btn-sm" %>

@@ -4,15 +4,15 @@
       <h2 class="text-center m-3">ログイン</h2>
 
       <%= form_with model: @user, url: user_session_path, local: true do |f| %>
-
+        <div id="form">
         <div class="text-center mb-3">
           <%= f.label :name, "名前" %><br />
-          <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+          <%= f.text_field :name, autofocus: true, autocomplete: "name", id: "session_name" %>
         </div>
 
         <div class="text-center mb-2">
           <%= f.label :password, "パスワード" %><br />
-          <%= f.password_field :password, autocomplete: "current-password" %>
+          <%= f.password_field :password, autocomplete: "current-password", id: "session_password" %>
         </div>
 
         <% if devise_mapping.rememberable? %>
@@ -21,7 +21,7 @@
             <%= f.label :remember_me %>
           </div>
         <% end %>
-
+        </div>
         <div class="text-center m-3">
           <%= f.submit "ログイン", class: "btn btn-primary btn-sm" %>
         </div>

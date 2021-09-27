@@ -38,13 +38,13 @@ RSpec.describe "Postモデルのテスト", type: :model do
         expect(post.valid?).to eq false
       end
     end
+
     context "User_idカラム" do
       it "空でないこと" do
         post.user_id = nil
         expect(post).to be_invalid
       end
     end
-    
   end
 
   describe "アソシエーションのテスト" do

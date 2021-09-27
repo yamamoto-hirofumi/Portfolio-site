@@ -2,6 +2,7 @@ require "rails_helper"
 
 RSpec.describe "PostTagモデルのテスト", type: :model do
   let(:post_tag) { create(:post_tag) }
+
   describe "バリデーションのテスト" do
     it "post_idとtag_idがある場合、有効であること" do
       expect(post_tag).to be_valid
@@ -15,7 +16,7 @@ RSpec.describe "PostTagモデルのテスト", type: :model do
       expect(post_tag).to be_invalid
     end
   end
-  
+
   describe "アソシエーションのテスト" do
     context "Postモデルとの関係" do
       it "N:1となっている" do

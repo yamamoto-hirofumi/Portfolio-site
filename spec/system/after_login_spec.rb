@@ -269,15 +269,15 @@ RSpec.describe "ログイン後のテスト", type: :request do
         expect(page).to have_field "post[content]", with: post.content
       end
       it "Tag編集フォームが表示される" do
-        expect(page).to have_field "post[tag_ids]"#, with: post.tags
+        expect(page).to have_field "post[tag_ids]" # , with: post.tags
       end
       it "投稿更新ボタンが表示される" do
         expect(page).to have_button "投稿更新"
       end
     end
 
-      context "編集成功のテスト" do
-        i = 0
+    context "編集成功のテスト" do
+      i = 0
       before do
         i += 1
         @post_old_title = post.title

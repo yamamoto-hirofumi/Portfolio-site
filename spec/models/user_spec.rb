@@ -96,11 +96,11 @@ RSpec.describe 'Userモデルのテスト', type: :model do
       end
     end
   end
-  
-  context "メソッドのテスト" do  
-    it "followメソッドが正しく動くか" do 
-      other_user =  FactoryBot.create(:user)
+
+  context "メソッドのテスト" do
+    it "followメソッドが正しく動くか" do
       user = create(:user)
+      other_user = create(:user)
       expect{ user.follow(other_user.id) }.to change(Relationship, :count).from(0).to(1)
     end
     it "unfollowメソッドが正しく動くか" do
@@ -119,6 +119,13 @@ RSpec.describe 'Userモデルのテスト', type: :model do
       user = create(:user)
       other_user = create(:user)
       expect( user.following?(other_user) ).to be_falsey
+    end
+    it "create_notification_follow!メソッドが正しく動くか" do
+      before_notification_count = Notification.count
+      user.follow(other_user.id)
+      user.create_notification_follow!(other_user)
+      after_notification_count = Notification.count
+      expect( after_notification_count - before_notification_count ).to eq 1
     end
   end
 end

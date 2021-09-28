@@ -2,6 +2,7 @@ require "rails_helper"
 
 RSpec.describe "PostCommentモデルのテスト", type: :model do
   let(:post_comment) { FactoryBot.create(:post_comment) }
+  let(:post) { create(:post) }
 
   describe "バリデーションのテスト" do
     context "commentカラム" do
@@ -33,5 +34,11 @@ RSpec.describe "PostCommentモデルのテスト", type: :model do
         expect(PostComment.reflect_on_association(:notifications).macro).to eq :has_many
       end
     end
+  end
+  it "コメントカウントのテスト" do
+    before_comment_count = PostComment.count
+    post_comments = create(:post_comment)
+    after_comment_count = PostComment.count
+    expect( after_comment_count -  before_comment_count ).to eq 1
   end
 end

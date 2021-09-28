@@ -4,7 +4,6 @@
       <h2 class="text-center m-3">ログイン</h2>
 
       <%= form_with model: @user, url: user_session_path, local: true do |f| %>
-        <div id="form">
         <div class="text-center mb-3">
           <%= f.label :name, "名前" %><br />
           <%= f.text_field :name, autofocus: true, autocomplete: "name", id: "session_name" %>
@@ -21,7 +20,6 @@
             <%= f.label :remember_me %>
           </div>
         <% end %>
-        </div>
         <div class="text-center m-3">
           <%= f.submit "ログイン", class: "btn btn-primary btn-sm" %>
         </div>

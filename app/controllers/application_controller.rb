@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
               num += 1
             end
           end
-          flash[:notice] = num.to_s + "日連続ログインおめでとうございます！！"
+          flash.now[:notice] = num.to_s + "日連続ログインおめでとうございます！！"
           current_user.login_histories.last.update(flashd_at: DateTime.now)
         end
       end

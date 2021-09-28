@@ -35,8 +35,13 @@ end
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.expect_with :rspec do |c|
+    c.syntax = :expect
+  end
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include ControllerMacros
+  config.include Warden::Test::Helpers
   config.include SignInSupport
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your

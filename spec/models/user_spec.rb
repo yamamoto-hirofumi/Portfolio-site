@@ -95,5 +95,18 @@ RSpec.describe 'Userモデルのテスト', type: :model do
         expect(User.reflect_on_association(:login_histories).macro).to eq :has_many
       end
     end
+    
+    it "followメソッドが正しく動くか" do 
+      other_user =  FactoryBot.create(:user)
+      user = create(:user)
+      expect{ user.follow(other_user.id) }.to change(Relationship, :count).from(0).to(1)
+    end
+    
+    it "unfollowメソッドが正しく動くか" do
+      user = create(:user)
+      other_user = create(:user)
+      user.follow(other_user.id)
+      expect{ user.unfollow(other_user.id) }.to change(Relationship, :count).from(1).to(0)
+    end
   end
 end

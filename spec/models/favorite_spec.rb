@@ -33,11 +33,12 @@ RSpec.describe "Favoriteモデルのテスト", type: :model do
       end
     end
   end
+
   it "いいねカウントのテスト" do
     before_favorite_count = Favorite.count
     favorite = create(:favorite)
     after_favorite_count = Favorite.count
-    expect( after_favorite_count -  before_favorite_count ).to eq 1
+    expect(after_favorite_count - before_favorite_count).to eq 1
   end
   it "create_notification_favorite!メソッドが正しく動くか" do
     other_user = create(:user)
@@ -46,6 +47,6 @@ RSpec.describe "Favoriteモデルのテスト", type: :model do
     favorite = create(:favorite)
     user.create_notification_follow!(other_user)
     after_notification_count = Notification.count
-    expect( after_notification_count - before_notification_count ).to eq 1
-    end
+    expect(after_notification_count - before_notification_count).to eq 1
+  end
 end

@@ -35,10 +35,11 @@ RSpec.describe "PostCommentモデルのテスト", type: :model do
       end
     end
   end
+
   it "コメントカウントのテスト" do
     before_comment_count = PostComment.count
     post_comments = create(:post_comment)
     after_comment_count = PostComment.count
-    expect( after_comment_count -  before_comment_count ).to eq 1
+    expect(after_comment_count - before_comment_count).to eq 1
   end
 end

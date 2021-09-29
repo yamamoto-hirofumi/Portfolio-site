@@ -6,10 +6,6 @@ RSpec.describe FavoritesController, type: :request do
   let(:favorite) { create(:favorite) }
 
   describe "createのテスト" do
-    before do
-      sign_in(user)
-    end
-
     it "Ajexが反応する" do
       post post_favorites_path(posts.id), xhr: true
       expect(response.content_type).to eq 'text/javascript'
@@ -25,10 +21,6 @@ RSpec.describe FavoritesController, type: :request do
   end
 
   describe "destroyのテスト" do
-    before do
-      sign_in(user)
-    end
-
     it "Ajexが反応する" do
       delete post_favorites_path(posts.id), xhr: true
       expect(response.content_type).to eq 'text/javascript'

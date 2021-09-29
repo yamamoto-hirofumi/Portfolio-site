@@ -1,6 +1,6 @@
 <div class='container'>
   <div class="col-12">
-    <h2 class="text-center m-3">新規登録</h2>
+    <h2 class="text-center p-3">新規登録</h2>
 
     <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>

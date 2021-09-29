@@ -2,7 +2,7 @@
   <div class="row">
     <h1 class="col-12 text-center  my-3">投稿編集</h1>
   </div>
-  <div class="col-8 offset-4">
+  <div class="col-9 offset-3">
     <%= form_with model: @post, url: post_path(@post), local: true do |f| %>
     <%= render "layouts/errors", obj: @post %>
      <p id="error" class="offset-2"><%= flash[:error] %></p>

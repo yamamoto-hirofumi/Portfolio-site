@@ -6,10 +6,6 @@ RSpec.describe PostCommentsController, type: :request do
   let(:post_comments) { create(:post_comment) }
 
   describe "createのテスト" do
-    before do
-      sign_in(user)
-    end
-
     it "Ajexが反応する" do
       post post_post_comments_path(posts.id), xhr: true,
                                               params: { post_id: posts.id, id: post_comments.id }
@@ -25,10 +21,6 @@ RSpec.describe PostCommentsController, type: :request do
   end
 
   describe "destroyのテスト" do
-    before do
-      sign_in(user)
-    end
-
     it "Ajexが反応する" do
       delete post_post_comment_path(post_comments.post, post_comments), xhr: true, params:
       { post_id: posts.id, id: post_comments.id }

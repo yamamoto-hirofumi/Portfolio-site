@@ -57,7 +57,7 @@
 }
 
 .body {
-    background-color: #DDFFFF	;
+    background-color: #F0FFFF	;
 }
 
 //ページネーションのデザイン
@@ -98,4 +98,33 @@
   height: 500px;
   background-image: image-url("about_image.jpg");
   background-size: cover;
+}
+
+.comment{
+  border: solid;
+  border: 1px solid;
+}
+
+.chat{
+  border: solid;
+  border: 1px solid;
+  background-color: #A4C6FF;
+}
+
+.chat-left{
+  border: solid;
+  border: 1px solid;
+  border-radius:10px;
+  background-color: #FFFFFF;
+}
+
+.chat-right{
+  border: solid;
+  border: 1px solid;
+  border-radius:10px;
+  background-color: #66FF66;
+}
+
+.chat-time{
+  font-size: 5px;
 }

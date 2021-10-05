@@ -18,7 +18,7 @@
       <p>Content: <%= @post.content %></p>
       <p class="comments-count">コメント数: <%= @post.post_comments.count %></p>
       <p id="like-box"><%= render "favorites/favorite-btn", post: @post %></p>
-      <p>投稿日: <%= @post.created_at.strftime('%Y/%m/%d') %></p>
+      <p>投稿日: <%= time_ago_in_words(@post.created_at) %>前</p>
       <% if @post.written_by?(current_user) %>
         <%= link_to "編集", edit_post_path(@post), class: "btn btn-primary btn-sm" %>
         <%= link_to "削除", post_path(@post), method: :delete,"data-confirm" => "本当に削除しますか？", class: "btn btn-danger btn-sm" %>

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   root to: 'homes#top'
   get '/about' => 'homes#about', as: 'about'
+  post "/homes/guest_sign_in", to: "homes#new_guest"
   resources :posts do
     resources :post_comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]

@@ -44,6 +44,9 @@
             <li class="m-3">
               <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-dark btn-sm" %>
             </li>
+            <li class="m-3">
+              <%= link_to "ゲストログイン(閲覧用)", homes_guest_sign_in_path, method: :post, class: "btn btn-outline-dark btn-sm" %>
+            </li>
           </ul>
         <% end %>
       </div>

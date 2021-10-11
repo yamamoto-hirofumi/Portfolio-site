@@ -26,9 +26,13 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
-    @user.destroy
-    flash[:notice] = "ユーザーを削除しました"
-    redirect_to root_path
+    if @user.email == "guest@example.com"
+      redirect_to user_path(@user), notice: "ゲストユーザーは削除できません"
+    else
+      @user.destroy
+      flash[:notice] = "ユーザーを削除しました"
+      redirect_to root_path
+    end
   end
 
   def withdraw # 退会

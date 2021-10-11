@@ -5,8 +5,8 @@
 
       <%= form_with model: @user, url: user_session_path, local: true do |f| %>
         <div class="text-center mb-3">
-          <%= f.label :name, "名前" %><br />
-          <%= f.text_field :name, autofocus: true, autocomplete: "name", id: "session_name" %>
+          <%= f.label :email, "メール" %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", id: "session_email" %>
         </div>
 
         <div class="text-center mb-2">

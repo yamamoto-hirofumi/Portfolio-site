@@ -135,7 +135,7 @@ RSpec.describe "ログイン前のテスト", type: :request do
         expect(page).to have_content 'ログイン'
       end
       it 'nameフォームが表示される' do
-        expect(page).to have_field 'user[name]'
+        expect(page).to have_field 'user[email]'
       end
       it 'passwordフォームが表示される' do
         expect(page).to have_field 'user[password]'
@@ -144,13 +144,13 @@ RSpec.describe "ログイン前のテスト", type: :request do
         expect(page).to have_button 'ログイン'
       end
       it 'emailフォームは表示されない' do
-        expect(page).not_to have_field 'user[email]'
+        expect(page).not_to have_field 'user[name]'
       end
     end
 
     context 'ログイン成功のテスト' do
       before do
-        fill_in 'user[name]', with: user.name
+        fill_in 'user[email]', with: user.email
         fill_in 'user[password]', with: user.password
         click_button 'ログイン'
       end
@@ -162,7 +162,7 @@ RSpec.describe "ログイン前のテスト", type: :request do
 
     context 'ログイン失敗のテスト' do
       before do
-        fill_in 'user[name]', with: ''
+        fill_in 'user[email]', with: ''
         fill_in 'user[password]', with: ''
         click_button 'ログイン'
       end

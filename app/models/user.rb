@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_many :relationships, class_name: "Relationship",
                            foreign_key: "follower_id", dependent: :destroy
   has_many :followings, through: :relationships, source: :followed
-  has_many :user_rooms
+  has_many :user_rooms, dependent: :destroy
   has_many :chats
   has_many :active_notifications, class_name: "Notification",
                                   foreign_key: "visiter_id", dependent: :destroy

@@ -9,18 +9,18 @@
           <% if user_signed_in? %>
             <%= link_to user_path(post.user) do %>
               <p class="mb-0 ml-2">
-                <%= attachment_image_tag post.user, :profile_image, size: "100x100", format: 'jpeg', fallback: "no_image.jpg", class: "rounded-circle" %>
+                <%= attachment_image_tag post.user, :profile_image, size: "100x100", format: 'jpeg', fallback: "no_image.jpg", class: "rounded-circle mr-2" %>
                 <%= post.user.name %>
               </p>
             <% end %>
           <% else %>
             <p class="mb-0 ml-2">
-              <%= attachment_image_tag post.user, :profile_image, size: "100x100", format: 'jpeg', fallback: "no_image.jpg", class: "rounded-circle" %>
+              <%= attachment_image_tag post.user, :profile_image, size: "100x100", format: 'jpeg', fallback: "no_image.jpg", class: "rounded-circle mr-2" %>
               <%= post.user.name %>
             </p>
           <% end %>
         </div>
-        <p>
+        <p class="mt-1">
           Title:
           <%= link_to post.title, post_path(post) %><br>
         </p>

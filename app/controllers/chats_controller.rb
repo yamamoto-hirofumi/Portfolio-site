@@ -27,7 +27,8 @@ class ChatsController < ApplicationController
   def chat_params
     params.require(:chat).permit(:message, :room_id)
   end
-
+  
+  #　相互フォロー
   def follow_each_other
     user = User.find(params[:id])
     if current_user.following?(user) && user.following?(current_user)

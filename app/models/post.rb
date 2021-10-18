@@ -25,12 +25,15 @@ class Post < ApplicationRecord
   # タグ機能
   def save_tags(savepost_tags)
     current_tags = tags.pluck(:name) unless tags.nil?
+    #  古いタグ
     old_tags = current_tags - savepost_tags
+    #  新しいタグ
     new_tags = savepost_tags - current_tags
+    #　古いタグを削除
     old_tags.each do |old_name|
       tags.delete Tag.find_by(name: old_name)
     end
-
+    #　更新時に使用する
     new_tags.each do |new_name|
       post_tag = Tag.find_or_create_by(name: new_name)
       tags << post_tag
@@ -44,6 +47,7 @@ class Post < ApplicationRecord
       notification = current_user.active_notifications.new(
         post_id: id, visited_id: user_id, action: "favorite"
       )
+      #　自分のものは通知表示されない
       if notification.visiter_id == notification.visited_id
         notification.checked = true
       end

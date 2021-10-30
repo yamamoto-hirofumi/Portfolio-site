@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable
-
+  validates :name, presence: true, uniqueness: true, length: { maximum: 20 }
   has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
@@ -22,7 +22,7 @@ class User < ApplicationRecord
   has_many :login_histories, dependent: :destroy
   attachment :profile_image
 
-  validates :name, presence: true, uniqueness: true, length: { maximum: 20 }
+ 
   validates :introduction, length: { maximum: 100 }
 
   def follow(user_id)

@@ -5,17 +5,19 @@
         <th class="col-2 col-md-2">プロフィール画像</th>
         <th class="col-2 col-md-1">名前</th>
         <th class="col-5 col-md-2">プロフィール</th>
-        <!--<th class="col-2">フォロー / フォロワー数</th>-->
         <th class="col-1">投稿数</th>
       </tr>
     </thead>
     <% users.each do |user| %>
       <tbody>
         <tr class="text-center col-12 col-md-6">
-          <td class="col-3 col-md-2 align-middle"><%= attachment_image_tag user, :profile_image, size: "80x80", format: 'jpeg', fallback: "no_image.jpg", class: "rounded-circle" %></td>
+          <td class="col-3 col-md-2 align-middle">
+            <%= link_to user_path(user) do %>
+              <%= attachment_image_tag user, :profile_image, size: "80x80", format: 'jpeg', fallback: "no_image.jpg", class: "rounded-circle" %>
+            <% end %>
+          </td>
           <td class="col-2 col-md-1 align-middle"><%= link_to user.name, user_path(user) %></td>
           <td class="col-5 col-md-2 align-middle"><%= user.introduction%></td>
-          <!--<td class="col-2 align-middle"><%#= render "relationships/follow_count_following", user: user %>  /  <%#= render "relationships/follow_count_follower", user: user %></td>-->
           <td class="col-2 col-md-1 align-middle"><%= user.posts.count %></td>
         </tr>
       </tbody>
